@@ -1,0 +1,6 @@
+*{box-sizing: border-box;}
+
+.auth-header {
+    background-color: black;
+    padding: 15px;
+}
