@@ -1,0 +1,10 @@
+cat > .gitignore <<'EOF'
+
+.env
+src/.env
+src/vendor/
+docker/mysql/data/
+.vscode/
+.DS_Store
+
+EOS
