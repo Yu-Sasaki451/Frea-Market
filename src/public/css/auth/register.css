@@ -9,8 +9,7 @@
 
 .register-form {
     width: 600px;
-    height: 800px;
-    
+    padding: 16px;
 }
 
 .register-form__header {
@@ -47,7 +46,7 @@
     cursor: pointer;
 }
 
-.link-login {
+.link-auth {
     display: block;
     text-align: center;
     text-decoration: none;
@@ -62,3 +61,4 @@
     color: red;
 }
 
+@media (min-width: 768px) and (max-width: 850px)
