@@ -14,5 +14,5 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/register', [AuthController::class, 'register_step1']);
+Route::get('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'login']);

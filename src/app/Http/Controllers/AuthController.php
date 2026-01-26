@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register_step1(){
-        return view('auth.register_step1');
-    }
-
-    public function register_step2(){
-        return view('auth.register_step2');
+    public function register(){
+        return view('auth.register');
     }
 
     public function login(){
