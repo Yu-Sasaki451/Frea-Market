@@ -8,25 +8,24 @@
 @section('content')
 <main class="login">
     <form class="login-form" action="/login" method="post">
+        @csrf
         <div class="login-form__inner">
             <h2 class="login-form__header">ログイン</h2>
             
             <label class="login-label">メールアドレス</label>
             <input class="login-input" type="text" name="email" value="{{ old('email') }}">
             <div class="form-error">
-                バリデーション実装後にやる
-                        {{-- @error('password')
+                        @error('email')
                         {{ $message }}
-                        @enderror --}}
+                        @enderror
             </div>
 
             <label class="login-label">パスワード</label>
             <input class="login-input" type="password" name="password">
             <div class="form-error">
-                バリデーション実装後にやる
-                        {{-- @error('password')
+                        @error('password')
                         {{ $message }}
-                        @enderror --}}
+                        @enderror
             </div>
         </div>
         <button class="login-button" type="submit">ログインする</button>

@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
+use Laravel\Fortify\Http\Requests\LoginRequest;
 use App\Http\Requests\LoginFormRequest;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Cache\RateLimiting\Limit;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
@@ -31,7 +35,15 @@ class FortifyServiceProvider extends ServiceProvider
         //Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         //Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
-        Fortify::authenticateUsing(function (LoginFormRequest $request) {
+        Fortify::authenticateUsing(function (LoginRequest $request) {
+
+            $form = new LoginFormRequest();
+
+            Validator::make(
+                $request->all(),
+                $form->rules(),
+                $form->messages()
+            )->validate();
 
 
             $user = User::where('email', $request->input('email'))->first();
