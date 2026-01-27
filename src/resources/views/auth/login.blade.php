@@ -30,7 +30,7 @@
             </div>
         </div>
         <button class="login-button" type="submit">ログインする</button>
-        <a class="link-auth" href="/login">会員登録はこちら</a>
+        <a class="link-auth" href="/register">会員登録はこちら</a>
     </form>
 </main>
 

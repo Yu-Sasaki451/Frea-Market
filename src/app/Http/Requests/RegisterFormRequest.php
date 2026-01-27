@@ -13,7 +13,7 @@ class RegisterFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,23 @@ class RegisterFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' =>'required|min:8|confirmed',
+        ];
+    }
+
+    public function messages():array{
+        return [
+            'name.required' => 'お名前を入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
+            'password.required' => 'パスワードを入力してください',
+            'password.min' => 'パスワードは8文字以上で入力してください',
+            'password.confirmed' => 'パスワードと一致しません'
         ];
     }
 }
