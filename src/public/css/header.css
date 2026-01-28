@@ -12,11 +12,11 @@
 }
 
 .header-logo {
-    width: 350px;
+    width: 400px;
 }
 
 .header-utility__input {
-    width: 400px;
+    width: 450px;
     height: 45px;
     font-size: 24px;
     padding: 0 30px;
@@ -24,9 +24,10 @@
 }
 
 .header-utility__nav {
-    width: 350px;
+    width: 400px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .logout__button {

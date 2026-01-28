@@ -20,7 +20,7 @@
                 <button class="logout__button">ログアウト</button>
             </form>
             <a class="link-mypage" href="/mypage">マイページ</a>
-            <a class="link-sell" href="">出品</a>
+            <a class="link-sell" href="/sell">出品</a>
         </nav>
     </header>
     @yield('content')

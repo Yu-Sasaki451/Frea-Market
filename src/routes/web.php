@@ -21,4 +21,5 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/mypage', [ProfileController::class, 'showMypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit']);
+    Route::get('/sell', [ProductController::class, 'showSell']);
 });
