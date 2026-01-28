@@ -22,4 +22,5 @@ Route::middleware('auth')->group(function(){
     Route::get('/mypage', [ProfileController::class, 'showMypage']);
     Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit']);
     Route::get('/sell', [ProductController::class, 'showSell']);
+    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile']);
 });

@@ -16,16 +16,16 @@
             <input class="image-input" type="file" name="image" id="image-input" accept="image/*"> <label class="image-button" for="image-input">画像を選択する</label>
         </div>
         <label class="mypage-form__label" for="">ユーザー名</label>
-        <input class="mypage-form__input" type="text">
+        <input class="mypage-form__input" type="text" name="name">
 
         <label class="mypage-form__label" for="">郵便番号</label>
-        <input class="mypage-form__input" type="text">
+        <input class="mypage-form__input" type="text" name="post_code">
 
         <label class="mypage-form__label" for="">住所</label>
-        <input class="mypage-form__input" type="text">
+        <input class="mypage-form__input" type="text" name="address">
 
         <label class="mypage-form__label" for="">建物名</label>
-        <input class="mypage-form__input" type="text">
+        <input class="mypage-form__input" type="text" name="building">
 
         <button class="mypage-form__button" type="submit">更新する</button>
     </form>
