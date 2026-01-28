@@ -17,6 +17,7 @@ class CreateProductLikesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('product_id');
+            $table->unique(['user_id', 'product_id']);
             $table->timestamps();
         });
     }

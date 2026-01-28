@@ -18,6 +18,7 @@ class CreateProductCommentsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('product_id');
             $table->string('content');
+            $table->unique(['user_id', 'product_id']);
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ class CreateProductCategoriesTable extends Migration
             $table->id();
             $table->foreignId('product_id');
             $table->foreignId('category_id');
+            $table->unique(['category_id', 'product_id']);
             $table->timestamps();
         });
     }
