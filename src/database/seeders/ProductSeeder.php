@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/watch.jpg',
                 'brand' => 'Rolax',
                 'price' => 15000,
-                'detail' => 'スタイリッシュなデザインのメンズ腕時計',
+                'description' => 'スタイリッシュなデザインのメンズ腕時計',
             ],
             [
                 'condition_id' => $conditionIds['目立った傷や汚れなし'],
@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/hdd.jpg',
                 'brand' => '西芝',
                 'price' => 5000,
-                'detail' => '高速で信頼性の高いハードディスク',
+                'description' => '高速で信頼性の高いハードディスク',
             ],
             [
                 'condition_id' => $conditionIds['やや傷や汚れあり'],
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/onion.jpg',
                 'brand' => 'なし',
                 'price' => 300,
-                'detail' => '新鮮な玉ねぎ3束のセット',
+                'description' => '新鮮な玉ねぎ3束のセット',
             ],
             [
                 'condition_id' => $conditionIds['状態が悪い'],
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/shoes.jpg',
                 'brand' => '',
                 'price' => 4000,
-                'detail' => 'クラシックなデザインの革靴',
+                'description' => 'クラシックなデザインの革靴',
             ],
             [
                 'condition_id' => $conditionIds['良好'],
@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/note_pc.jpg',
                 'brand' => '',
                 'price' => 45000,
-                'detail' => '高性能なノートパソコン',
+                'description' => '高性能なノートパソコン',
             ],
             [
                 'condition_id' => $conditionIds['目立った傷や汚れなし'],
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/mic.jpg',
                 'brand' => 'なし',
                 'price' => 8000,
-                'detail' => '高音質のレコーディング用マイク',
+                'description' => '高音質のレコーディング用マイク',
             ],
             [
                 'condition_id' => $conditionIds['やや傷や汚れあり'],
@@ -66,7 +66,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/bag.jpg',
                 'brand' => '',
                 'price' => 3500,
-                'detail' => 'おしゃれなショルダーバッグ',
+                'description' => 'おしゃれなショルダーバッグ',
             ],
             [
                 'condition_id' => $conditionIds['状態が悪い'],
@@ -74,7 +74,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/tumbler.jpg',
                 'brand' => 'なし',
                 'price' => 500,
-                'detail' => '使いやすいタンブラー',
+                'description' => '使いやすいタンブラー',
             ],
             [
                 'condition_id' => $conditionIds['良好'],
@@ -82,7 +82,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/coffee_mill.jpg',
                 'brand' => 'Starbacks',
                 'price' => 4000,
-                'detail' => '手動のコーヒーミル',
+                'description' => '手動のコーヒーミル',
             ],
             [
                 'condition_id' => $conditionIds['目立った傷や汚れなし'],
@@ -90,7 +90,7 @@ class ProductSeeder extends Seeder
                 'image' => 'products/make_set.jpg',
                 'brand' => '',
                 'price' => 2500,
-                'detail' => '便利なメイクアップセット',
+                'description' => '便利なメイクアップセット',
             ],
         ]);
     }

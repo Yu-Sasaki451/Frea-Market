@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +24,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit']);
     Route::get('/sell', [ProductController::class, 'showSell']);
     Route::post('/mypage/profile', [ProfileController::class, 'storeProfile']);
+    Route::get('/item/{id}', [ProductController::class, 'productDetail']);
+    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase']);
 });

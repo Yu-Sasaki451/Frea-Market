@@ -1,0 +1,37 @@
+* {box-sizing: border-box;}
+
+.product-detail {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 700px;
+    background-color: aqua;
+}
+
+.product-card {
+    width: 300px;
+    height: 300px;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+}
+
+.product-content {
+    width: 350px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: antiquewhite;
+}
+
+.product-info__term {
+    font-weight: bold;
+}
+
+.product-info__category,
+.product-info__condition {
+    display: flex;
+}

@@ -12,7 +12,7 @@
     <header class="auth-header">
         <img class="header-logo" src="{{ asset('svg/logo.svg') }}" alt="">
         <form action="">
-            <input class="header-utility__input" type="text" placeholder="何かお探しですか？">
+            <input class="header-utility__input" type="text" placeholder="何をお探しですか？">
         </form>
         <nav class="header-utility__nav">
             <form action="/logout" method="post">
@@ -23,6 +23,9 @@
             <a class="link-sell" href="/sell">出品</a>
         </nav>
     </header>
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
+    
 </body>
 </html>

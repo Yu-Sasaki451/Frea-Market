@@ -9,18 +9,22 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['condition_id','name','image','brand','price','detail'];
+    protected $fillable = ['condition_id','name','image','brand','price','description'];
 
     public function condition(){
     return $this->belongsTo(Condition::class);
     }
 
     public function categories(){
-    return $this->belongsToMany(Category::class);
+    return $this->belongsToMany(Category::class,'product_categories');
     }
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function purchase(){
+        return $this->hasOne(Purchase::class);
     }
 
 }

@@ -12,14 +12,14 @@
 }
 
 .header-logo {
-    width: 400px;
+    width: 350px;
 }
 
 .header-utility__input {
     width: 450px;
-    height: 45px;
+    height: 44px;
     font-size: 24px;
-    padding: 0 30px;
+    padding: 0 40px;
     border-radius: 5px;
 }
 
@@ -51,4 +51,48 @@
     background-color: white;
     color: black;
     border-radius: 5px;
+}
+
+@media screen and (min-width:768px) and (max-width:850px) {
+    .header-logo {
+    width: 200px;
+}
+
+.header-utility__input {
+    width: 220px;
+    height: 35px;
+    font-size: 18px;
+    padding: 0 20px;
+    border-radius: 5px;
+}
+
+.header-utility__nav {
+    width: 220px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+    .logout__button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+.link-mypage {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.link-sell {
+    padding: 0 10px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
 }
