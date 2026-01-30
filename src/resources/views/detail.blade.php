@@ -11,10 +11,10 @@
         <img class="product-img" src="{{ asset('storage/' . $product->image) }}" alt="">
     </div>
     <div class="product-content">
-        <div class="product-purchase">
-            <h2 class="product-purchase__title">{{ $product->name }}</h2>
-            <p class="text-brand">{{ $product->brand }}</p>
-            <p class="text-price">¥{{ number_format($product->price) }} (税込)</p>
+        <div class="product-summary">
+            <h2 class="product__title">{{ $product->name }}</h2>
+            <p class="product-brand">{{ $product->brand }}</p>
+            <p class="product-price">¥{{ number_format($product->price) }} (税込)</p>
             <a href="/purchase/{{ $product->id }}">購入手続きへ</a>
         </div>
 

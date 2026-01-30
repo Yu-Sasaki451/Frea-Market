@@ -1,0 +1,102 @@
+* {box-sizing: border-box;}
+
+/*---共通---*/
+.purchase-content {
+    display: flex;
+    width: 1300px;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.purchase-summary,
+.purchase-payment,
+.purchase-address {
+    width: 600px;
+    border-bottom: 3px solid gainsboro;
+    padding: 30px 0;
+}
+
+/*---商品情報欄---*/
+.purchase-summary {
+    display: flex;
+    gap: 30px;
+}
+
+
+.purchase-summary__left {
+    width: 150px;
+    height: auto;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+}
+
+/*---支払い方法---*/
+.purchase-label {
+    font-size: 20px;
+}
+
+.payment-select {
+    display: block;
+    margin: 30px 50px 20px
+}
+
+
+.purchase-payment .purchase-label {
+    padding: 0 20px;
+}
+
+/*---配送先---*/
+.address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.address-content {
+    margin: 30px 30px 15px ;
+    padding: 0 40px;
+}
+
+.address,
+.post_code {
+    margin: 0;
+}
+
+/*---購入アクション---*/
+.purchase-info {
+    width: 400px;
+    border: 2px solid gainsboro;
+    margin-bottom: 50px;
+}
+
+
+.info-row:not(:last-child) {
+    border-bottom: 2px solid gainsboro;
+}
+
+.info-row--top,
+.info-row--bottom {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    padding: 25px 30px;
+    margin-left: 20px;
+}
+
+
+.purchase-button {
+    width: 400px;
+    height: 40px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+

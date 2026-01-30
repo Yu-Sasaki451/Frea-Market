@@ -30,5 +30,7 @@
         マイリスト表示
     </div>
 </div>
+@section('js')
 <script src="{{ asset('js/tab.js') }}"></script>
+@endsection
 @endsection

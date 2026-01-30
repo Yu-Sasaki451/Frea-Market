@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\DB;
 class ProductSeeder extends Seeder
 {
     public function run()
-    {
+    {   
+        $userId = DB::table('users')->value('id');
         $conditionIds = DB::table('conditions')->pluck('id', 'name');
 
         DB::table('products')->insert([
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['良好'],
                 'name' => '腕時計',
                 'image' => 'products/watch.jpg',
@@ -21,6 +23,7 @@ class ProductSeeder extends Seeder
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['目立った傷や汚れなし'],
                 'name' => 'HDD',
                 'image' => 'products/hdd.jpg',
@@ -29,6 +32,7 @@ class ProductSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['やや傷や汚れあり'],
                 'name' => '玉ねぎ3束',
                 'image' => 'products/onion.jpg',
@@ -37,6 +41,7 @@ class ProductSeeder extends Seeder
                 'description' => '新鮮な玉ねぎ3束のセット',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['状態が悪い'],
                 'name' => '革靴',
                 'image' => 'products/shoes.jpg',
@@ -45,6 +50,7 @@ class ProductSeeder extends Seeder
                 'description' => 'クラシックなデザインの革靴',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['良好'],
                 'name' => 'ノートPC',
                 'image' => 'products/note_pc.jpg',
@@ -53,6 +59,7 @@ class ProductSeeder extends Seeder
                 'description' => '高性能なノートパソコン',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['目立った傷や汚れなし'],
                 'name' => 'マイク',
                 'image' => 'products/mic.jpg',
@@ -61,6 +68,7 @@ class ProductSeeder extends Seeder
                 'description' => '高音質のレコーディング用マイク',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['やや傷や汚れあり'],
                 'name' => 'ショルダーバッグ',
                 'image' => 'products/bag.jpg',
@@ -69,6 +77,7 @@ class ProductSeeder extends Seeder
                 'description' => 'おしゃれなショルダーバッグ',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['状態が悪い'],
                 'name' => 'タンブラ-',
                 'image' => 'products/tumbler.jpg',
@@ -77,6 +86,7 @@ class ProductSeeder extends Seeder
                 'description' => '使いやすいタンブラー',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['良好'],
                 'name' => 'コーヒーミル',
                 'image' => 'products/coffee_mill.jpg',
@@ -85,6 +95,7 @@ class ProductSeeder extends Seeder
                 'description' => '手動のコーヒーミル',
             ],
             [
+                'user_id' => $userId,
                 'condition_id' => $conditionIds['目立った傷や汚れなし'],
                 'name' => 'メイクセット',
                 'image' => 'products/make_set.jpg',
