@@ -1,6 +1,7 @@
 cat > .gitignore <<'EOF'
 
 .env
+.env.testing
 src/.env
 src/vendor/
 docker/mysql/data/
