@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     public function showMypage(){
-        return view('profile.mypage');
+        $profile = Profile::where('user_id',Auth::id())->first();
+        return view('profile.mypage',compact('profile'));
     }
 
     public function mypageEdit(){
-        return view('profile.mypage_edit');
+        $profile = Profile::where('user_id',Auth::id())->first();
+        return view('profile.mypage_edit',compact('profile'));
     }
 
     public function storeProfile(Request $request){

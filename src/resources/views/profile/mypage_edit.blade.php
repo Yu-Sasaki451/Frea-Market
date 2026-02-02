@@ -11,7 +11,7 @@
         <h2 class="mypage-form__header">プロフィール設定</h2>
         <div class="mypage-form__image">
             <div class="image-preview" id="imagePreview">
-            @if(!empty($user->image_path)) <img src="{{ asset('storage/'.$user->image_path) }}" alt=""> @endif
+            @if(!empty($profile->image)) <img src="{{ asset('storage/'.$profile->image) }}" alt=""> @endif
             </div>
             <input class="image-input" type="file" name="image" id="image-input" accept="image/*"> <label class="image-button" for="image-input">画像を選択する</label>
         </div>
