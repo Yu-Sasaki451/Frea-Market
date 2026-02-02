@@ -38,6 +38,12 @@
     cursor: pointer;
 }
 
+.link-login {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
 
 .link-mypage {
     text-decoration: none;

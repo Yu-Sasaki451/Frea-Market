@@ -10,15 +10,20 @@
 </head>
 <body>
     <header class="auth-header">
-        <img class="header-logo" src="{{ asset('svg/logo.svg') }}" alt="">
+        <a href="/"><img class="header-logo" src="{{ asset('svg/logo.svg') }}" alt=""></a>
         <form action="">
             <input class="header-utility__input" type="text" placeholder="何をお探しですか？">
         </form>
         <nav class="header-utility__nav">
-            <form action="/logout" method="post">
-                @csrf
-                <button class="logout__button">ログアウト</button>
-            </form>
+            @guest
+                <a class="link-login" href="/login">ログイン</a>
+            @endguest
+            @auth
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="logout__button">ログアウト</button>
+                </form>
+            @endauth
             <a class="link-mypage" href="/mypage">マイページ</a>
             <a class="link-sell" href="/sell">出品</a>
         </nav>

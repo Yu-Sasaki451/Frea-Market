@@ -16,14 +16,15 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
-Route::get('/register', [AuthController::class, 'register']);
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register'])->name('register_form');
+Route::get('/login', [AuthController::class, 'login'])->name('login_form');
+Route::get('/', [ProductController::class, 'index'])->name('index');
+Route::get('/item/{id}', [ProductController::class, 'productDetail'])->name('product_detail');
+
 Route::middleware('auth')->group(function(){
-    Route::get('/', [ProductController::class, 'index']);
-    Route::get('/mypage', [ProfileController::class, 'showMypage']);
-    Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit']);
-    Route::get('/sell', [ProductController::class, 'showSell']);
-    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile']);
-    Route::get('/item/{id}', [ProductController::class, 'productDetail']);
-    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase']);
+    Route::get('/mypage', [ProfileController::class, 'showMypage'])->name('mypage');
+    Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit'])->name('mypage_edit');
+    Route::get('/sell', [ProductController::class, 'showSell'])->name('sell');
+    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('profile_store');
+    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase');
 });
