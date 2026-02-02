@@ -15,7 +15,7 @@ class RegisterTest extends TestCase
     {
         return[
             'name' => 'テスト',
-            'email' => 'test_' . Str::random(10) . '@example.com',
+            'email' => 'test@example.com',
             'password' => '12345678',
             'password_confirmation' => '12345678',
         ];
