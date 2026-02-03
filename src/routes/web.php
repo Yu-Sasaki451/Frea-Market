@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SellController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +25,7 @@ Route::get('/item/{id}', [ProductController::class, 'productDetail'])->name('pro
 Route::middleware('auth')->group(function(){
     Route::get('/mypage', [ProfileController::class, 'showMypage'])->name('mypage');
     Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit'])->name('mypage_edit');
-    Route::get('/sell', [ProductController::class, 'showSell'])->name('sell');
+    Route::get('/sell', [SellController::class, 'showSell'])->name('sell');
     Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('profile_store');
     Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase');
     Route::post('/item/{id}', [ProductController::class, 'toggleLike'])->name('product_like');

@@ -18,9 +18,6 @@ class ProductController extends Controller
         return view ('index',compact('products'));
     }
 
-    public function showSell(){
-        return view('sell');
-    }
 
     public function productDetail($id){
 
