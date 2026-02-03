@@ -27,4 +27,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/sell', [ProductController::class, 'showSell'])->name('sell');
     Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('profile_store');
     Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase');
+    Route::post('/item/{id}', [ProductController::class, 'toggleLike'])->name('product_like');
+
 });

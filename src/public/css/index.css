@@ -18,10 +18,13 @@
     padding: 20px;
 }
 
-#panel-recommend {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.tab-panel {
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    gap: 50px;
+    justify-content: start;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .tab-panel[hidden] {
@@ -29,11 +32,11 @@
 }
 
 .product-card {
-    width: 300px;
-    margin-left: 30px;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
 }
 
 .product-img {
@@ -47,3 +50,16 @@
     font-size: 18px;
 }
 
+
+/*ここから下はタブレット用*/
+@media screen and (min-width:768px) and (max-width:850px){
+
+.tab-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    gap: 30px;
+    justify-content: start;
+    width: fit-content;
+    margin: 0 auto;
+}
+}

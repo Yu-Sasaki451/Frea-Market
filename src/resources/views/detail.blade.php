@@ -15,6 +15,20 @@
             <h2 class="product__title">{{ $product->name }}</h2>
             <p class="product-brand">{{ $product->brand }}</p>
             <p class="product-price">¥{{ number_format($product->price) }} (税込)</p>
+            <div class="product-actions">
+                <form action="/item/{{ $product->id }}" method="post">
+                    @csrf
+                    <button class="product-action {{ $liked ? 'is-liked' : ''}}" type="submit">
+                        <span class="icon"> {!! file_get_contents(public_path('svg/like.svg')) !!}</span>
+                        <span class="count">{{ $product->likes_count }}</span>
+                    </button>
+                </form>
+
+                <div class="product-action">
+                    <span class="icon">{!! file_get_contents(public_path('svg/comment.svg')) !!}</span>
+                    <span class="count">{{ $product->comments_count }}</span>
+                </div>
+            </div>
             <a href="/purchase/{{ $product->id }}">購入手続きへ</a>
         </div>
 

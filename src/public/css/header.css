@@ -59,6 +59,7 @@
     border-radius: 5px;
 }
 
+/*ここから下はタブレット用*/
 @media screen and (min-width:768px) and (max-width:850px) {
     .header-logo {
     width: 200px;

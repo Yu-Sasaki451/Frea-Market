@@ -19,6 +19,11 @@ class Product extends Model
     return $this->belongsToMany(Category::class,'product_categories');
     }
 
+    public function likes(){
+    return $this->belongsToMany(User::class, 'product_likes')
+        ->withTimestamps();
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class);
     }

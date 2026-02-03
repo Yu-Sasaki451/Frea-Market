@@ -5,7 +5,6 @@
     justify-content: space-between;
     margin: 0 auto;
     width: 700px;
-    background-color: aqua;
 }
 
 .product-card {
@@ -19,12 +18,11 @@
 }
 
 .product-content {
-    width: 350px;
-    height: 800px;
+    width: 300px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: antiquewhite;
 }
 
 .product-info__term {
@@ -34,4 +32,48 @@
 .product-info__category,
 .product-info__condition {
     display: flex;
+}
+
+.product-actions {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.product-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+    background: none;
+    border: none;
+}
+
+.icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/*通常時のいいねアイコン*/
+.icon .heart-fill {
+    display: none;
+}
+
+.product-action .icon {
+    color: #000;
+}
+
+/*いいねした時のいいねアイコン*/
+.product-action.is-liked .icon .heart-fill {
+    display: block;
+}
+
+.product-action.is-liked .icon .heart-outline {
+    display: none;
+}
+
+.product-action.is-liked .icon {
+    color: #ff4d4d;
 }
