@@ -1,5 +1,6 @@
 * {box-sizing: border-box;}
 
+/* ========== 箱全体　==========*/
 .product-detail {
     display: flex;
     justify-content: space-between;
@@ -7,6 +8,7 @@
     width: 700px;
 }
 
+/* =========== 左側の画像 ==========*/
 .product-card {
     width: 300px;
     height: 300px;
@@ -17,6 +19,7 @@
     height: auto;
 }
 
+/* =========== 右側のコンテンツ ==========*/
 .product-content {
     width: 300px;
     height: 700px;
@@ -36,18 +39,17 @@
 
 .product-actions {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: flex-start;
     margin-left: 20px;
+    margin-bottom: 15px;
 }
 
-.product-action {
+.product-comment {
     display: flex;
     flex-direction: column;
     align-items: center;
     line-height: 1.2;
-    background: none;
-    border: none;
 }
 
 .icon svg {
@@ -56,24 +58,58 @@
     display: block;
 }
 
-/*通常時のいいねアイコン*/
+.link-purchase {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 4px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/*　========== いいねアイコン ==========*/
+/* buttonタグの初期値をリセット*/
+.product-action--like {
+    all:unset;
+    cursor: pointer;
+}
+
+/*必要な設定だけ追加*/
+.product-action--like {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+
+/* ========== 通常時のいいねアイコン ==========*/
 .icon .heart-fill {
     display: none;
 }
 
-.product-action .icon {
+.product-action--like .icon {
     color: #000;
 }
 
-/*いいねした時のいいねアイコン*/
-.product-action.is-liked .icon .heart-fill {
+
+/* ========== いいねした時のいいねアイコン ==========*/
+
+.product-action--like.is-liked .icon .heart-fill {
     display: block;
 }
 
-.product-action.is-liked .icon .heart-outline {
+.product-action--like.is-liked .icon .heart-outline {
     display: none;
 }
 
-.product-action.is-liked .icon {
+.product-action--like.is-liked .icon {
     color: #ff4d4d;
 }
+
+
+
+
+
+

@@ -3,16 +3,22 @@
 }
 
 .auth-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     background-color: black;
     height: 70px;
     padding: 15px;
-    align-items: center;
+    column-gap: 24px;
 }
 
 .header-logo {
-    width: 350px;
+    height: 40px;
+    width: auto;
+}
+
+.auth-header form {
+    justify-self: center;
 }
 
 .header-utility__input {
@@ -24,10 +30,12 @@
 }
 
 .header-utility__nav {
-    width: 400px;
+    justify-self: end;
+    width: auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
+    gap: 20px;
 }
 
 .logout__button {
@@ -38,16 +46,15 @@
     cursor: pointer;
 }
 
-.link-login {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-}
-
-
+.link-login,
 .link-mypage {
     text-decoration: none;
     color: white;
+}
+
+.link-login,
+.link-mypage,
+.link-sell {
     font-size: 20px;
 }
 
@@ -59,47 +66,44 @@
     border-radius: 5px;
 }
 
-/*ここから下はタブレット用*/
-@media screen and (min-width:768px) and (max-width:850px) {
+/* ==========ここから下はタブレット用 ==========*/
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .auth-header {
+        height: 70px;
+        padding: 15px;
+        column-gap: 12px;
+    }
+
     .header-logo {
-    width: 200px;
-}
+        height: 32px;
+        width: auto;
+        max-width: 220px;
+    }
 
-.header-utility__input {
-    width: 220px;
-    height: 35px;
-    font-size: 18px;
-    padding: 0 20px;
-    border-radius: 5px;
-}
+    .header-utility__input {
+        width: 220px;
+        height: 35px;
+        font-size: 18px;
+        padding: 0 20px;
+        border-radius: 5px;
+    }
 
-.header-utility__nav {
-    width: 220px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
+    .header-utility__nav {
+        width: auto;
+        gap: 10px;
+    }
 
     .logout__button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-}
+        font-size: 14px;
+    }
 
+    .link-login,
+    .link-mypage,
+    .link-sell {
+        font-size: 14px;
+    }
 
-.link-mypage {
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-}
-
-.link-sell {
-    padding: 0 10px;
-    text-decoration: none;
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-}
+    .link-sell {
+        padding: 0 10px;
+    }
 }

@@ -1,0 +1,15 @@
+*{box-sizing: border-box;}
+
+.sell {
+    width: 450px;
+    margin: 0 auto;
+    background-color: antiquewhite;
+}
+
+.sell-heading__title {
+    text-align: center;
+}
+
+.sell-label {
+    display: block;
+}
