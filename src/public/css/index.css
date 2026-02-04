@@ -1,5 +1,7 @@
 * {box-sizing: border-box;}
 
+/* ========== タブ設定 ==========*/
+
 .tablist {
     padding-left: 100px;
     border-bottom: 2px solid gainsboro;
@@ -31,24 +33,34 @@
     display: none !important;
 }
 
+/* ========== 画像の設定 ==========*/
+
 .product-card {
-    width: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
 
+.product-img--square {
+    width: 200px;
+    aspect-ratio: 1 /1;
+    overflow: hidden;
 }
 
 .product-img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .product-label {
     margin: 0;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 18px;
 }
+
+
 
 
 /*ここから下はタブレット用*/

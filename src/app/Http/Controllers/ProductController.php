@@ -12,11 +12,20 @@ use App\Models\Condition;
 class ProductController extends Controller
 {
     public function index(Request $request){
+    $query = Product::query();
 
-        $products = Product::all();
-
-        return view ('index',compact('products'));
+    if (Auth::check()) {
+        $query->where('user_id', '!=', Auth::id());
     }
+    $products = $query->get();
+
+    $likedProducts = Auth::check()
+        ? Auth::user()->likedProducts()->get(): [];
+
+    return view('index', compact('products','likedProducts'));
+    }
+
+
 
 
     public function productDetail($id){
