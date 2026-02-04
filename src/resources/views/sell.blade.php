@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form class="sell" action="" method="post" enctype="multipart/form-data">
+<form class="sell" action="/sell" method="post" enctype="multipart/form-data">
     @csrf
     <div class="sell-heading">
         <h2 class="sell-heading__title">商品の出品</h2>
@@ -18,7 +18,8 @@
             type="file"
             name="image"
             id="imageInput"
-            accept="image/*">
+            accept="image/*"
+            required>
 
             <label class="sell-image__button" for="imageInput">画像を選択する</label>
             <div class="sell-image__preview" id="imagePreview"></div>
@@ -52,17 +53,17 @@
 
     <section class="sell-section__description">
         <h3 class="sell-title">商品名と説明</h3>
-        <label class="sell-label" for="">商品名</label>
-        <input class="sell-input" type="text">
+        <label class="sell-label" for="name">商品名</label>
+        <input class="sell-input" type="text" id="name" name="name" value="{{ old('name') }}">
 
-        <label class="sell-label" for="">ブランド名</label>
-        <input class="sell-input" type="text">
+        <label class="sell-label" for="brand">ブランド名</label>
+        <input class="sell-input" type="text" id="brand" name="brand" value="{{ old('brand') }}">
 
-        <label class="sell-label" for="">商品の説明</label>
-        <textarea class="sell-textarea" name="" id="" cols="30" rows="10"></textarea>
+        <label class="sell-label" for="description">商品の説明</label>
+        <textarea class="sell-textarea" name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
 
-        <label class="sell-label" for="">販売価格</label>
-        <input class="sell-input" type="text">
+        <label class="sell-label" for="price">販売価格</label>
+        <input class="sell-input" type="number" id="price" name="price" value="{{ old('price') }}">
     </section>
     <button class="sell-button" type="submit">出品する</button>
 </form>
