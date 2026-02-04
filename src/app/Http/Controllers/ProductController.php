@@ -12,20 +12,26 @@ use App\Models\Condition;
 class ProductController extends Controller
 {
     public function index(Request $request){
+
     $query = Product::query();
 
-    if (Auth::check()) {
-        $query->where('user_id', '!=', Auth::id());
-    }
+    //自分の出品を除外
+    if (Auth::check()) {$query->where('user_id', '!=', Auth::id());}
+
+    //いいねしたマイリスト
+    if (Auth::check()) {$likedQuery = Auth::user()->likedProducts();
+
+    //検索フォーム部分一致
+    $keyword = $request->input('keyword');
+    if (!empty($keyword)) {$query->where('name', 'like', '%' . $keyword . '%');}
     $products = $query->get();
 
-    $likedProducts = Auth::check()
-        ? Auth::user()->likedProducts()->get(): [];
+    if (!empty($keyword)) {$likedQuery->where('name', 'like', '%' . $keyword . '%');}
+    $likedProducts = $likedQuery->get();
 
     return view('index', compact('products','likedProducts'));
     }
-
-
+    }
 
 
     public function productDetail($id){

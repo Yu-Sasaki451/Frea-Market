@@ -11,8 +11,8 @@
 <body>
     <header class="auth-header">
         <a href="/"><img class="header-logo" src="{{ asset('svg/logo.svg') }}" alt=""></a>
-        <form action="">
-            <input class="header-utility__input" type="text" placeholder="何をお探しですか？">
+        <form action="/" method="get">
+            <input class="header-utility__input" type="text" name="keyword" value="{{ request('keyword') }}" placeholder="何をお探しですか？">
         </form>
         <nav class="header-utility__nav">
             @guest
