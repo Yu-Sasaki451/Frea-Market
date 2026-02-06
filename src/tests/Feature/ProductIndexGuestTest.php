@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Product;
 
-class ProductIndexTest extends TestCase
+class ProductIndexGuestTest extends TestCase
 {
     use RefreshDatabase;
 

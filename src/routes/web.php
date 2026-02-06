@@ -30,4 +30,5 @@ Route::middleware('auth')->group(function(){
     Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase');
     Route::post('/item/{id}', [ProductController::class, 'toggleLike'])->name('product_like');
     Route::post('/sell', [SellController::class, 'storeProduct'])->name('storeProduct');
+    Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])->name('storePurchase');
 });

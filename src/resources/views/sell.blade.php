@@ -43,7 +43,7 @@
         <div class="sell-condition">
             <label class="sell-label" for="">商品の状態</label>
             <select class="sell-select" name="condition_id">
-                <option value="" selected disabled>選択してください</option>
+                <option value="" selected disabled hidden>選択してください</option>
                 @foreach($conditions as $condition)
                 <option class="sell-option" value="{{ $condition->id}}">{{ $condition->name }}</option>
                 @endforeach
@@ -63,7 +63,7 @@
         <textarea class="sell-textarea" name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
 
         <label class="sell-label" for="price">販売価格</label>
-        <input class="sell-input" type="number" id="price" name="price" value="{{ old('price') }}">
+        <input class="sell-input" type="text" id="price" name="price" placeholder="¥" value="{{ old('price') }}">
     </section>
     <button class="sell-button" type="submit">出品する</button>
 </form>

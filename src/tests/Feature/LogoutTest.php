@@ -3,10 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class LogoutTest extends TestCase
 {
@@ -15,11 +12,7 @@ class LogoutTest extends TestCase
 
     public function test_ログアウト(){
 
-        $user = User::create([
-            'name' => 'テスト',
-            'email' => 'test@example.com',
-            'password' => Hash::make('12345678'),
-        ]);
+        $user = $this->makeUser();
 
         $this->actingAs($user);
 

@@ -3,10 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 
 class LoginTest extends TestCase
@@ -21,18 +18,9 @@ class LoginTest extends TestCase
         ];
     }
 
-    private function seedUser(): User{
-
-        return User::create([
-            'name' => 'テスト',
-            'email' => 'test@example.com',
-            'password' => Hash::make('12345678'),
-        ]);
-    }
-
     public function test_メールアドレス未入力(){
 
-        $this->seedUser();
+        $this->makeUser();
 
         $data = $this->base();
         $data['email'] = '';
@@ -44,7 +32,7 @@ class LoginTest extends TestCase
 
     public function test_パスワード未入力(){
 
-        $this->seedUser();
+        $this->makeUser();
 
         $data = $this->base();
         $data['password'] = '';
@@ -56,7 +44,7 @@ class LoginTest extends TestCase
 
     public function test_メールアドレス不一致(){
 
-        $this->seedUser();
+        $this->makeUser();
 
         $data = $this->base();
         $data['email'] = 'test@exam.com';
@@ -70,7 +58,7 @@ class LoginTest extends TestCase
 
     public function test_パスワード不一致(){
 
-        $this->seedUser();
+        $this->makeUser();
 
         $data = $this->base();
         $data['password'] = '12345689';
@@ -84,7 +72,7 @@ class LoginTest extends TestCase
 
     public function test_ログイン成功()
     {
-        $user = $this->seedUser();
+        $user = $this->makeUser();
 
         $data = $this->base();
 

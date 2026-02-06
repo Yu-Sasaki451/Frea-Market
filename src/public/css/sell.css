@@ -11,13 +11,19 @@
 
 .sell-label {
     display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .sell-title {
+    margin-top: 20px;
     border-bottom: 2px solid rgb(182, 182, 182);
 }
 
+
 /* ========== 画像選択 ==========*/
+
 
 .sell-image__box {
     border: 1px dashed #ddd;
@@ -81,6 +87,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
+    margin: 25px 0;
 }
 
 .category-list input {
@@ -90,10 +97,10 @@
 }
 
 .category-list label {
-    padding: 6px 12px;
+    padding: 3px 10px;
     border: 1px solid #ff6b6b;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1;
     cursor: pointer;
     white-space: nowrap;
@@ -110,19 +117,26 @@
 
 .sell-select {
     width: 100%;
-    padding: 5px ;
+    height: 28px;
 }
 
 /* ========== 商品名と説明 ==========*/
 
 .sell-input {
     width: 100%;
-    height: 30px;
+    height: 28px;
+    padding: 0 5px;
+}
+
+.sell-input::placeholder {
+    color: black;
+    opacity: 1;
 }
 
 .sell-textarea {
     width: 100%;
-    height: 80px;
+    height: 70px;
+    padding: 4px;
     resize: none;
 }
 
@@ -130,11 +144,11 @@
 
 .sell-button {
     width: 100%;
-    height: 30px;
+    height: 35px;
     background-color: #ff6b6b;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 45px;
 }

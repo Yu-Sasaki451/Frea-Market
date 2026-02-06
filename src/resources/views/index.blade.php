@@ -25,6 +25,9 @@
             </div>
         </a>
         <p class="product-label">{{ $product->name }}</p>
+        @if(in_array($product->id, $purchasedProducts))
+            SOLD
+        @endif
     </div>
     @endforeach
 </div>
@@ -37,6 +40,9 @@
                 </div>
             </a>
             <p class="product-label">{{ $likedProduct->name }}</p>
+            @if(in_array($likedProduct->id, $purchasedProducts))
+                SOLD
+            @endif
         </div>
         @endforeach
     </div>

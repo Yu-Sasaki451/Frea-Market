@@ -7,6 +7,11 @@
 @section('content')
 <form class="purchase" action="/purchase/{{ $product->id }}" method="post">
     @csrf
+    <input type="hidden" name="name" value="{{ $product->name }}">
+    <input type="hidden" name="price" value="{{ $product->price }}">
+    <input type="hidden" name="address" value="{{ $profile->address ?? '' }}">
+    <input type="hidden" name="building" value="{{ $profile->building ?? '' }}">
+
     <div class="purchase-content">
         <div class="purchase-content__left">
             <div class="purchase-summary">
