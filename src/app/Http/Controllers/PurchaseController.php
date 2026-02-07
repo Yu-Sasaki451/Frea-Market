@@ -12,7 +12,30 @@ class PurchaseController extends Controller
 
     $product = Product::find($id);
     $profile = auth()->user()->profile;
-    return view('purchase', compact('product','profile'));
+
+    $sessionAddress = session('purchase_address');
+
+    $shipping = [
+        'post_code' => $sessionAddress['post_code'] ?? $profile->post_code,
+        'address'   => $sessionAddress['address'] ?? $profile->address,
+        'building'  => $sessionAddress['building'] ?? $profile->building,
+    ];
+
+    return view('purchase', compact('product','profile','shipping'));
+    }
+
+    public function showPurchaseAddress($id){
+
+        $product = Product::find($id);
+        return view('purchase_address',compact('product'));
+    }
+
+    public function storePurchaseAddress(Request $request,$id){
+
+        $data = $request->only(['post_code','address','building']);
+        $request->session()->put('purchase_address',$data);
+
+        return redirect ('/purchase/{id}');
     }
 
     public function storePurchase(Request $request,$id){
@@ -28,6 +51,8 @@ class PurchaseController extends Controller
         $purchase_data->address = $request->input('address');
         $purchase_data->building = $request->input('building');
         $purchase_data->save();
+
+        $request->session()->forget('purchase_address');
 
         return redirect('/');
     }

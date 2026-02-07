@@ -9,8 +9,8 @@
     @csrf
     <input type="hidden" name="name" value="{{ $product->name }}">
     <input type="hidden" name="price" value="{{ $product->price }}">
-    <input type="hidden" name="address" value="{{ $profile->address ?? '' }}">
-    <input type="hidden" name="building" value="{{ $profile->building ?? '' }}">
+    <input type="hidden" name="address" value="{{ $shipping['address'] ?? '' }}">
+    <input type="hidden" name="building" value="{{ $shipping['building'] ?? '' }}">
 
     <div class="purchase-content">
         <div class="purchase-content__left">
@@ -37,8 +37,8 @@
                     <a class="link-address" href="/purchase/address/{{ $product->id }}">変更する</a>
                 </div>
                 <div class="address-content">
-                    <p class="post_code">〒{{ $profile->post_code }}</p>
-                    <p class="address">{{ $profile->address }} {{ $profile->building }}</p>
+                    <p class="post_code">〒{{ $shipping['post_code'] ?? '' }}</p>
+                    <p class="address">{{ $shipping['address'] ?? '' }} {{ $shipping['building'] ?? '' }}</p>
                 </div>
             </div>
         </div>

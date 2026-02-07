@@ -17,18 +17,20 @@ use App\Http\Controllers\SellController;
 |
 */
 
-Route::get('/register', [AuthController::class, 'register'])->name('register_form');
-Route::get('/login', [AuthController::class, 'login'])->name('login_form');
+Route::get('/register', [AuthController::class, 'register'])->name('register.form');
+Route::get('/login', [AuthController::class, 'login'])->name('login.form');
 Route::get('/', [ProductController::class, 'index'])->name('index');
-Route::get('/item/{id}', [ProductController::class, 'productDetail'])->name('product_detail');
+Route::get('/item/{id}', [ProductController::class, 'productDetail'])->name('product.detail');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/mypage', [ProfileController::class, 'showMypage'])->name('mypage');
-    Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit'])->name('mypage_edit');
-    Route::get('/sell', [SellController::class, 'showSell'])->name('sell');
-    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('profile_store');
-    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase');
-    Route::post('/item/{id}', [ProductController::class, 'toggleLike'])->name('product_like');
-    Route::post('/sell', [SellController::class, 'storeProduct'])->name('storeProduct');
-    Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])->name('storePurchase');
+    Route::get('/mypage', [ProfileController::class, 'showMypage'])->name('mypage.show');
+    Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit'])->name('mypage.edit.form');
+    Route::get('/sell', [SellController::class, 'showSell'])->name('sell.form');
+    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('profile.store');
+    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase.form');
+    Route::post('/item/{id}', [ProductController::class, 'toggleLike'])->name('product.like.store');
+    Route::post('/sell', [SellController::class, 'storeProduct'])->name('product.sell.store');
+    Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])->name('Purchase.store');
+    Route::get('/purchase/address/{id}',[PurchaseController::class, 'showPurchaseAddress'])->name('purchase.address.form');
+    Route::post('/purchase/address/{id}', [PurchaseController::class, 'storePurchaseAddress'])->name('purchase.address.store');
 });

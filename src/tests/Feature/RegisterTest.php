@@ -78,6 +78,6 @@ class RegisterTest extends TestCase
 
         $data = $this->base();
         $this->post('/register',$data)
-        ->assertRedirect(route('mypage_edit'));
+        ->assertRedirect(route('mypage.edit.form'));
     }
 }

@@ -67,7 +67,7 @@ class MylistTest extends TestCase
 
         $mylistSection = $this->mylistSection($response->getContent());
         $this->assertStringContainsString('購入済み商品', $mylistSection);
-        $this->assertStringContainsString('SOLD', $mylistSection);
+        $this->assertStringContainsString('Sold', $mylistSection);
     }
 
 }

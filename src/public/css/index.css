@@ -55,10 +55,14 @@
 }
 
 .product-label {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
     margin: 0;
     margin-bottom: 10px;
     font-size: 18px;
 }
+
 
 
 

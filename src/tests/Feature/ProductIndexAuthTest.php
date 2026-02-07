@@ -38,8 +38,8 @@ class ProductIndexAuthTest extends TestCase
         $response->assertDontSee('商品B');
         $response->assertSee('商品C');
         $response->assertSee('商品D');
-        $response->assertSeeInOrder(['商品D', 'SOLD']);
-        $this->assertSame(1, substr_count($response->getContent(), 'SOLD'));
+        $response->assertSeeInOrder(['商品D', 'Sold']);
+        $this->assertSame(1, substr_count($response->getContent(), 'Sold'));
     }
 
 }

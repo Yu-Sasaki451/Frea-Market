@@ -24,10 +24,14 @@
                 <img class="product-img" src="{{ asset('storage/' . $product->image) }}" alt="">
             </div>
         </a>
-        <p class="product-label">{{ $product->name }}</p>
-        @if(in_array($product->id, $purchasedProducts))
-            SOLD
-        @endif
+        <p class="product-label">
+            {{ $product->name }}
+            <span class="sold-label">
+            @if(in_array($product->id, $purchasedProducts))
+                Sold
+            @endif
+            </span>
+        </p>
     </div>
     @endforeach
 </div>
@@ -39,10 +43,14 @@
                     <img class="product-img" src="{{ asset('storage/' . $likedProduct->image) }}" alt="">
                 </div>
             </a>
-            <p class="product-label">{{ $likedProduct->name }}</p>
-            @if(in_array($likedProduct->id, $purchasedProducts))
-                SOLD
-            @endif
+            <p class="product-label">
+                {{ $likedProduct->name }}
+                <span class="sold-label">
+                    @if(in_array($likedProduct->id, $purchasedProducts))
+                        Sold
+                    @endif
+                </span>
+            </p>
         </div>
         @endforeach
     </div>
