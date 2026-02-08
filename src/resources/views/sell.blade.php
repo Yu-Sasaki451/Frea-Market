@@ -8,7 +8,7 @@
 <form class="sell" action="/sell" method="post" enctype="multipart/form-data">
     @csrf
     <div class="sell-heading">
-        <h2 class="sell-heading__title">商品の出品</h2>
+        <h1 class="sell-heading__title">商品の出品</h1>
     </div>
     <section class="sell-section__image">
         <label class="sell-label" for="">商品画像</label>
@@ -27,7 +27,7 @@
     </section>
 
     <section class="sell-section__detail">
-        <h3 class="sell-title">商品の詳細</h3>
+        <h2 class="sell-title">商品の詳細</h2>
         <div class="sell-category">
             <label class="sell-label" for="">カテゴリー</label>
             <div class="category-list">
@@ -52,7 +52,7 @@
     </section>
 
     <section class="sell-section__description">
-        <h3 class="sell-title">商品名と説明</h3>
+        <h2 class="sell-title">商品名と説明</h2>
         <label class="sell-label" for="name">商品名</label>
         <input class="sell-input" type="text" id="name" name="name" value="{{ old('name') }}">
 

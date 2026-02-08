@@ -32,24 +32,28 @@ class ProfileController extends Controller
         return view('profile.mypage_edit',compact('profile'));
     }
 
-    public function storeProfile(Request $request){
+    public function saveProfile(Request $request){
         //ログインユーザーのID取得
         $userId = auth()->id();
 
-        //画像パスの保存
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('profiles', 'public');}
-
-        //プロフィール作成
-        Profile::create([
-            'user_id'    => $userId,
+        //リクエストから取得
+        $data = [
             'name'       => $request->input('name'),
-            'image'      => $imagePath,
             'post_code'  => $request->input('post_code'),
             'address'    => $request->input('address'),
             'building'   => $request->input('building'),
-    ]);
+        ];
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('profiles', 'public');
+        }
+
+        //プロフィール作成・編集
+        Profile::updateOrCreate(
+            ['user_id' => $userId],
+            $data
+        );
+
 
     return redirect('/');
     }

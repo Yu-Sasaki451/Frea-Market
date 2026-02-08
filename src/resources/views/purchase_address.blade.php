@@ -8,7 +8,7 @@
 <div class="purchase-address">
     <form class="purchase-address-form" action="/purchase/address/{{$product->id}}" method="post">
         @csrf
-        <h2 class="purchase-address-form__header">住所の変更</h2>
+        <h1 class="purchase-address-form__header">住所の変更</h1>
 
         <label class="purchase-address-form__label" for="">郵便番号</label>
         <input class="purchase-address-form__input" type="text" name="post_code">

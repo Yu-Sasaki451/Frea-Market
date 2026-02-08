@@ -12,6 +12,7 @@
 .product-card {
     width: 300px;
     height: 300px;
+    margin-top: 100px;
 }
 
 .product-img {
@@ -108,8 +109,19 @@
     color: #ff4d4d;
 }
 
+.comment-textarea {
+    width: 100%;
+    height: 100px;
+}
 
-
-
-
+.comment-button {
+    width: 100%;
+    height: 30px;
+    display: block;
+    margin-top: 30px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
 

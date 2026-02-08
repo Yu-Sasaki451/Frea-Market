@@ -14,11 +14,18 @@ class PurchaseController extends Controller
     $profile = auth()->user()->profile;
 
     $sessionAddress = session('purchase_address');
+    $hasSessionAddress = is_array($sessionAddress);
 
     $shipping = [
-        'post_code' => $sessionAddress['post_code'] ?? $profile->post_code,
-        'address'   => $sessionAddress['address'] ?? $profile->address,
-        'building'  => $sessionAddress['building'] ?? $profile->building,
+        'post_code' => $hasSessionAddress && array_key_exists('post_code', $sessionAddress)
+            ? $sessionAddress['post_code']
+            : $profile->post_code,
+        'address'   => $hasSessionAddress && array_key_exists('address', $sessionAddress)
+            ? $sessionAddress['address']
+            : $profile->address,
+        'building'  => $hasSessionAddress && array_key_exists('building', $sessionAddress)
+            ? $sessionAddress['building']
+            : $profile->building,
     ];
 
     return view('purchase', compact('product','profile','shipping'));
@@ -33,9 +40,10 @@ class PurchaseController extends Controller
     public function storePurchaseAddress(Request $request,$id){
 
         $data = $request->only(['post_code','address','building']);
+        $data = array_map(fn($v) => $v === '' ? null : $v, $data);
         $request->session()->put('purchase_address',$data);
 
-        return redirect ('/purchase/{id}');
+        return redirect ('/purchase/' .$id);
     }
 
     public function storePurchase(Request $request,$id){

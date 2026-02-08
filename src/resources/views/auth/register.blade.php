@@ -10,7 +10,7 @@
     <form class="register-form" action="/register" method="post">
         @csrf
         <div class="register-form__inner">
-            <h2 class="register-form__header">会員登録</h2>
+            <h1 class="register-form__header">会員登録</h1>
             <label class="register-label">ユーザー名</label>
             <input class="register-input" type="text" name="name" value="{{ old('name') }}">
             <div class="form-error">

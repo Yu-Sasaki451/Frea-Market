@@ -12,7 +12,7 @@
     </div>
     <div class="product-content">
         <div class="product-summary">
-            <h2 class="product__title">{{ $product->name }}</h2>
+            <h1 class="product__title">{{ $product->name }}</h1>
             <p class="product-brand">{{ $product->brand }}</p>
             <p class="product-price">¥{{ number_format($product->price) }} (税込)</p>
             <div class="product-actions">
@@ -33,12 +33,12 @@
         </div>
 
         <div class="product-description">
-            <h3 class="product-description__title">商品説明</h3>
+            <h2 class="product-description__title">商品説明</h2>
             <p class="product-description__text">{{ $product->description }}</p>
         </div>
 
         <div class="product-info">
-            <h3 class="product-info__title">商品情報</h3>
+            <h2 class="product-info__title">商品情報</h2>
             <dl class="product-info__list">
                 <div class="product-info__category">
                     <dt class="product-info__term">カテゴリー</dt>
@@ -54,7 +54,27 @@
                 </div>
             </dl>
         </div>
+        <div class="comment">
+            <h2>コメント({{ $product->comments_count }})</h2>
+            <ul class="comment-list">
+                @foreach($product->comments as $comment)
+                <li class="comment-item">
+                    <div class="comment-user">
+                        <span class="comment-user__icon"></span>
+                        <span class="comment-user__name">{{ $comment->user->name }}</span>
+                    </div>
+                    <p class="comment-body">{{ $comment->content }}</p>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+        <form class="comment-form" action="/item/{{ $product->id }}" method="post">
+            @csrf
+            <textarea class="comment-textarea" name="content"></textarea>
+            <button class="comment-button" type="submit">コメントを送信する</button>
+        </form>
     </div>
+   
 </div>
 
 

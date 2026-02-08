@@ -10,7 +10,7 @@
     <form class="login-form" action="/login" method="post">
         @csrf
         <div class="login-form__inner">
-            <h2 class="login-form__header">ログイン</h2>
+            <h1 class="login-form__header">ログイン</h1>
             
             <label class="login-label">メールアドレス</label>
             <input class="login-input" type="text" name="email" value="{{ old('email') }}">
