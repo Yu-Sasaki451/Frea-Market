@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
+use App\Models\Product;
+use App\Models\Purchase;
 
 class ProfileController extends Controller
 {
@@ -12,7 +14,15 @@ class ProfileController extends Controller
         //ログインユーザーに紐づくプロフィールを1件取得
         $profile = Profile::where('user_id',Auth::id())->first();
 
-        return view('profile.mypage',compact('profile'));
+         //ログインユーザーの出品商品
+        $products = Product::where('user_id', Auth::id())->get();
+
+        //ログインユーザーの購入商品（商品情報も一緒に取得）
+        $purchases = Purchase::with('product')
+            ->where('user_id', Auth::id())
+            ->get();
+
+        return view('profile.mypage',compact('profile','products','purchases'));
     }
 
     public function mypageEdit(){

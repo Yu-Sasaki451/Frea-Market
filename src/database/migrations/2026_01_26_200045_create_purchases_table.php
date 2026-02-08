@@ -20,6 +20,7 @@ class CreatePurchasesTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->string('payment');
+            $table->string('post_code');
             $table->string('address');
             $table->string('building')->nullable();
             $table->timestamps();

@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Product;
-use App\Models\User;
 use Tests\TestCase;
 
 class SearchTest extends TestCase
@@ -13,10 +11,10 @@ class SearchTest extends TestCase
 
     public function test_検索後にいいねしてマイリストでも保持()
     {
-        $user = User::factory()->create();
+        $user = $this->createUser();
 
-        $matchProduct = Product::factory()->create(['name' => '青いシャツ']);
-        $notMatchProduct = Product::factory()->create(['name' => '赤い帽子']);
+        $matchProduct = $this->createProduct(['name' => '青いシャツ']);
+        $notMatchProduct = $this->createProduct(['name' => '赤い帽子']);
 
         $this->actingAs($user);
 

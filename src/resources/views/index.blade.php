@@ -17,24 +17,24 @@
         </button>
     </div>
     <div class="tab-panel" role="tabpanel" id="panel-recommend" aria-labelledby="tab-recommend" tabindex="0">
-    @foreach($products as $product)
-    <div class="product-card">
-        <a href="/item/{{ $product->id }}">
-            <div class="product-img--square">
-                <img class="product-img" src="{{ asset('storage/' . $product->image) }}" alt="">
-            </div>
-        </a>
-        <p class="product-label">
-            {{ $product->name }}
-            <span class="sold-label">
-            @if(in_array($product->id, $purchasedProducts))
-                Sold
-            @endif
-            </span>
-        </p>
+        @foreach($products as $product)
+        <div class="product-card">
+            <a href="/item/{{ $product->id }}">
+                <div class="product-img--square">
+                    <img class="product-img" src="{{ asset('storage/' . $product->image) }}" alt="">
+                </div>
+            </a>
+            <p class="product-label">
+                {{ $product->name }}
+                <span class="sold-label">
+                @if(in_array($product->id, $purchasedProducts))
+                    Sold
+                @endif
+                </span>
+            </p>
+        </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
     <div class="tab-panel" role="tabpanel" id="panel-mylist" aria-labelledby="tab-mylist" tabindex="0" hidden>
         @foreach($likedProducts as $likedProduct)
         <div class="product-card">

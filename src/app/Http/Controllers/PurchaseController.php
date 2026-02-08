@@ -47,6 +47,7 @@ class PurchaseController extends Controller
         $purchase_data->product_id = $product->id;
         $purchase_data->name = $request->input('name');
         $purchase_data->price = $request->input('price');
+        $purchase_data->post_code = $request->input('post_code');
         $purchase_data->payment = $request->input('payment');
         $purchase_data->address = $request->input('address');
         $purchase_data->building = $request->input('building');

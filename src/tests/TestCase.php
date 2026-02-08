@@ -5,6 +5,9 @@ namespace Tests;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Product;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Hash;
 
 abstract class TestCase extends BaseTestCase
@@ -27,5 +30,50 @@ abstract class TestCase extends BaseTestCase
         ], $overrides);
 
         return User::create($data);
+    }
+
+    protected function createUser(array $overrides = []): User
+    {
+        return User::factory()->create($overrides);
+    }
+
+    protected function createProfile(User $user, array $overrides = []): Profile
+    {
+        $data = array_merge([
+            'user_id' => $user->id,
+            'name' => '購入者',
+            'image' => null,
+            'post_code' => '123-4567',
+            'address' => '東京都港区1-2-3',
+            'building' => 'テストビル101',
+        ], $overrides);
+
+        return Profile::create($data);
+    }
+
+    protected function createProduct(array $overrides = []): Product
+    {
+        return Product::factory()->create($overrides);
+    }
+
+    protected function createPurchase(User $user, Product $product, array $overrides = []): Purchase
+    {
+        $data = array_merge([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'payment' => 'card',
+            'post_code' => '123-4567',
+            'address' => '東京都',
+            'building' => null,
+        ], $overrides);
+
+        return Purchase::create($data);
+    }
+
+    protected function likeProduct(User $user, Product $product): void
+    {
+        $user->likedProducts()->attach($product->id);
     }
 }

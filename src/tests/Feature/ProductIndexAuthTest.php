@@ -4,32 +4,21 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Product;
-use App\Models\Purchase;
 
 class ProductIndexAuthTest extends TestCase
 {
     use RefreshDatabase;
 
     public function test_商品一覧表示、ログインユーザー(){
-        $user = User::factory()->create();
+        $user = $this->createUser();
         $this->actingAs($user);
 
-        $productA = Product::factory()->create(['name' => '商品A']);
-        $productB = Product::factory()->create(['name' => '商品B', 'user_id' => $user->id]);
-        $productC = Product::factory()->create(['name' => '商品C']);
-        $productD = Product::factory()->create(['name' => '商品D']);
+        $productA = $this->createProduct(['name' => '商品A']);
+        $productB = $this->createProduct(['name' => '商品B', 'user_id' => $user->id]);
+        $productC = $this->createProduct(['name' => '商品C']);
+        $productD = $this->createProduct(['name' => '商品D']);
 
-        Purchase::create([
-            'user_id' => $user->id,
-            'product_id' => $productD->id,
-            'name' => $productD->name,
-            'price' => $productD->price,
-            'payment' => 'card',
-            'address' => '東京都',
-            'building' => null,
-        ]);
+        $this->createPurchase($user, $productD);
 
         $response = $this->get('/');
 

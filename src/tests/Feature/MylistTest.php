@@ -4,9 +4,6 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\User;
-use App\Models\Product;
-use App\Models\Purchase;
 
 class MylistTest extends TestCase
 {
@@ -14,16 +11,16 @@ class MylistTest extends TestCase
 
     public function test_未ログイン時は空_ログイン時はいいね商品のみ表示()
     {
-        $user = User::factory()->create();
+        $user = $this->createUser();
 
-        $likedProduct = Product::factory()->create([
+        $likedProduct = $this->createProduct([
             'name' => 'いいね商品',
         ]);
-        $notLikedProduct = Product::factory()->create([
+        $notLikedProduct = $this->createProduct([
             'name' => '未いいね商品',
         ]);
 
-        $user->likedProducts()->attach($likedProduct->id);
+        $this->likeProduct($user, $likedProduct);
 
         $guestResponse = $this->get('/');
         $guestResponse->assertStatus(200);
@@ -43,23 +40,14 @@ class MylistTest extends TestCase
 
     public function test_購入済み商品にはSOLDが表示される()
     {
-        $user = User::factory()->create();
+        $user = $this->createUser();
 
-        $soldProduct = Product::factory()->create([
+        $soldProduct = $this->createProduct([
             'name' => '購入済み商品',
         ]);
 
-        $user->likedProducts()->attach($soldProduct->id);
-
-        Purchase::create([
-            'user_id' => $user->id,
-            'product_id' => $soldProduct->id,
-            'name' => $soldProduct->name,
-            'price' => $soldProduct->price,
-            'payment' => 'card',
-            'address' => '東京都',
-            'building' => null,
-        ]);
+        $this->likeProduct($user, $soldProduct);
+        $this->createPurchase($user, $soldProduct);
 
         $response = $this->actingAs($user)->get('/');
 

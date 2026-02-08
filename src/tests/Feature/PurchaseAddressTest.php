@@ -1,0 +1,77 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class PurchaseAddressTest extends TestCase
+{
+    use RefreshDatabase;
+
+    /**
+     * @return void
+     */
+    public function test_配送先住所変更、購入画面に反映()
+    {
+        $user = $this->createUser();
+        $this->createProfile($user);
+
+        $product = $this->createProduct();
+
+        $this->actingAs($user);
+
+        $addressResponse = $this->post("/purchase/address/{$product->id}", [
+            'post_code' => '987-6543',
+            'address' => '東京都新宿区4-5-6',
+            'building' => 'サンプルマンション202',
+        ]);
+
+        $addressResponse->assertStatus(302);
+
+        $purchaseResponse = $this->get("/purchase/{$product->id}");
+        $purchaseResponse->assertStatus(200);
+        $purchaseResponse->assertSeeText('〒987-6543');
+        $purchaseResponse->assertSeeText('東京都新宿区4-5-6');
+        $purchaseResponse->assertSeeText('サンプルマンション202');
+    }
+
+    /**
+     * @return void
+     */
+    public function test_配送先変更、購入情報に変更配送先保存()
+    {
+        $buyer = $this->createUser();
+        $this->createProfile($buyer);
+
+        $product = $this->createProduct();
+
+        $this->actingAs($buyer);
+
+        $this->post("/purchase/address/{$product->id}", [
+            'post_code' => '111-2222',
+            'address' => '東京都渋谷区7-8-9',
+            'building' => 'テストビル303',
+        ]);
+
+        $purchaseResponse = $this->post("/purchase/{$product->id}", [
+            'name' => $product->name,
+            'price' => $product->price,
+            'post_code' => '111-2222',
+            'address' => '東京都渋谷区7-8-9',
+            'building' => 'テストビル303',
+            'payment' => 'card',
+        ]);
+
+        $purchaseResponse->assertRedirect('/');
+
+        $this->assertDatabaseHas('purchases', [
+            'user_id' => $buyer->id,
+            'product_id' => $product->id,
+            'post_code' => '111-2222',
+            'address' => '東京都渋谷区7-8-9',
+            'building' => 'テストビル303',
+            'payment' => 'card',
+        ]);
+    }
+}

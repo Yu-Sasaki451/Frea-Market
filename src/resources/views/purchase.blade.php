@@ -9,6 +9,7 @@
     @csrf
     <input type="hidden" name="name" value="{{ $product->name }}">
     <input type="hidden" name="price" value="{{ $product->price }}">
+    <input type="hidden" name="post_code" value="{{ $shipping['post_code'] ?? '' }}">
     <input type="hidden" name="address" value="{{ $shipping['address'] ?? '' }}">
     <input type="hidden" name="building" value="{{ $shipping['building'] ?? '' }}">
 
