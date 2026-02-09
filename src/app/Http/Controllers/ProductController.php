@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function productDetail($id){
         //状態とカテゴリも取得、いいねとコメントをカウント
-        $product = Product::with(['condition','categories'])
+        $product = Product::with(['condition','categories','comments.user.profile'])
             ->withCount(['likes','comments'])
             ->findOrFail($id);
 

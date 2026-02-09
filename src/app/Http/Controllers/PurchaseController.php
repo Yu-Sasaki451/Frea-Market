@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\Product;
 use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 
 class PurchaseController extends Controller
 {
@@ -67,7 +68,7 @@ class PurchaseController extends Controller
         return redirect('/');
     }
 
-    public function storeComment(Request $request,$id){
+    public function storeComment(CommentRequest $request,$id){
         $user = auth()->id();
         $product = Product::findOrFail($id);
 

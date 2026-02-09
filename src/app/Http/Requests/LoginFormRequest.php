@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Laravel\Fortify\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginFormRequest extends LoginRequest
 {
@@ -34,5 +36,21 @@ class LoginFormRequest extends LoginRequest
             'email.required' => 'メールアドレスを入力してください',
             'password.required' => 'パスワードを入力してください',
         ];
+    }
+
+    public function withValidator($validator){
+
+        $validator->after(function($validator){
+        $email = $this->input('email');
+        $password = $this->input('password');
+
+        if(!$email || !$password) {return;}
+
+        $user = User::where('email',$email)->first();
+
+        if(!$user || !Hash::check($password, $user->password)){
+            $validator->errors()->add('email','ログイン情報が登録されていません。');
+        }
+    });
     }
 }

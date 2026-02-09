@@ -60,7 +60,11 @@
                 @foreach($product->comments as $comment)
                 <li class="comment-item">
                     <div class="comment-user">
+                        @if($comment->user->profile && $comment->user->profile->image)
+                            <img class="comment-user__icon" src="{{ asset('storage/'. $comment->user->profile->image) }}">
+                        @else
                         <span class="comment-user__icon"></span>
+                        @endif
                         <span class="comment-user__name">{{ $comment->user->name }}</span>
                     </div>
                     <p class="comment-body">{{ $comment->content }}</p>
@@ -71,6 +75,11 @@
         <form class="comment-form" action="/item/{{ $product->id }}" method="post">
             @csrf
             <textarea class="comment-textarea" name="content"></textarea>
+            <div class="comment-error">
+                @error('content')
+                {{ $message }}
+                @enderror
+            </div>
             <button class="comment-button" type="submit">コメントを送信する</button>
         </form>
     </div>
