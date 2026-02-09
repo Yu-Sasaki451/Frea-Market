@@ -74,7 +74,6 @@
             <button class="comment-button" type="submit">コメントを送信する</button>
         </form>
     </div>
-   
 </div>
 
 

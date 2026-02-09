@@ -33,4 +33,5 @@ Route::middleware('auth')->group(function(){
     Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])->name('Purchase.store');
     Route::get('/purchase/address/{id}',[PurchaseController::class, 'showPurchaseAddress'])->name('purchase.address.form');
     Route::post('/purchase/address/{id}', [PurchaseController::class, 'storePurchaseAddress'])->name('purchase.address.store');
+    Route::post('/item/{id}',[PurchaseController::class, 'storeComment'])->name('comment.store');
 });

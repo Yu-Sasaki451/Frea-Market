@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\Product;
+use App\Models\Comment;
 
 class PurchaseController extends Controller
 {
@@ -64,5 +65,19 @@ class PurchaseController extends Controller
         $request->session()->forget('purchase_address');
 
         return redirect('/');
+    }
+
+    public function storeComment(Request $request,$id){
+        $user = auth()->id();
+        $product = Product::findOrFail($id);
+
+        $product_comment = new Comment;
+        $product_comment->user_id = $user;
+        $product_comment->product_id = $product->id;
+        $product_comment->content = $request->input('content');
+        $product_comment->save();
+
+        return redirect("/item/{$product->id}");
+
     }
 }
