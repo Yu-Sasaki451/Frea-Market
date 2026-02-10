@@ -24,14 +24,22 @@ Route::get('/item/{id}', [ProductController::class, 'productDetail'])->name('pro
 
 Route::middleware('auth')->group(function(){
     Route::get('/mypage', [ProfileController::class, 'showMypage'])->name('mypage.show');
+
     Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit'])->name('mypage.edit.form');
-    Route::get('/sell', [SellController::class, 'showSell'])->name('sell.form');
     Route::post('/mypage/profile', [ProfileController::class, 'saveProfile'])->name('profile.save');
-    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase.form');
-    Route::post('/item/{id}', [ProductController::class, 'toggleLike'])->name('product.like.store');
+
+    Route::get('/sell', [SellController::class, 'showSell'])->name('sell.form');
     Route::post('/sell', [SellController::class, 'storeProduct'])->name('product.sell.store');
-    Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])->name('Purchase.store');
-    Route::get('/purchase/address/{id}',[PurchaseController::class, 'showPurchaseAddress'])->name('purchase.address.form');
-    Route::post('/purchase/address/{id}', [PurchaseController::class, 'storePurchaseAddress'])->name('purchase.address.store');
-    Route::post('/item/{id}',[PurchaseController::class, 'storeComment'])->name('comment.store');
+
+    Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase.form');
+    Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])
+        ->name('Purchase.store');
+
+    Route::get('/purchase/address/{id}',[PurchaseController::class, 'showPurchaseAddress'])
+        ->name('purchase.address.form');
+    Route::post('/purchase/address/{id}', [PurchaseController::class, 'storePurchaseAddress'])
+        ->name('purchase.address.store');
+
+    Route::post('/item/{id}/liked', [ProductController::class, 'toggleLike'])->name('product.like.store');
+    Route::post('/item/{id}/comment',[PurchaseController::class, 'storeComment'])->name('comment.store');
 });

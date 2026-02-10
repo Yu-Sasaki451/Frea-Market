@@ -26,7 +26,7 @@
                 購入した商品
             </button>
         </div>
-        <div class="tab-panel" role="tabpanel" id="panel-sell" aria-labelledby="tab-sell" tabindex="0">
+        <div class="mypage-tab__panel" role="tabpanel" id="panel-sell" aria-labelledby="tab-sell" tabindex="0">
             @foreach($products as $product)
             <div class="product-card">
                 <a href="/item/{{ $product->id }}">
@@ -39,7 +39,7 @@
             @endforeach
         </div>
 
-        <div class="tab-panel" role="tabpanel" id="panel-purchase" aria-labelledby="tab-purchase" tabindex="0" hidden>
+        <div class="mypage-tab__panel" role="tabpanel" id="panel-purchase" aria-labelledby="tab-purchase" tabindex="0" hidden>
             @foreach($purchases as $purchase)
             <div class="product-card">
                 <a href="/item/{{ $purchase->product->id }}">

@@ -19,7 +19,7 @@ class LikedTest extends TestCase
             ->assertStatus(200);
 
         $this->actingAs($user)
-            ->post("/item/{$product->id}");
+            ->post("/item/{$product->id}/liked");
 
         $this->assertDatabaseHas('product_likes', [
             'user_id' => $user->id,
@@ -41,7 +41,7 @@ class LikedTest extends TestCase
             ->assertStatus(200);
 
         $this->actingAs($user)
-            ->post("/item/{$product->id}");
+            ->post("/item/{$product->id}/liked");
 
         $response = $this->actingAs($user)->get("/item/{$product->id}");
         $response->assertStatus(200);
@@ -60,7 +60,7 @@ class LikedTest extends TestCase
             ->assertStatus(200);
 
         $this->actingAs($user)
-            ->post("/item/{$product->id}");
+            ->post("/item/{$product->id}/liked");
 
         $this->assertDatabaseMissing('product_likes', [
             'user_id' => $user->id,

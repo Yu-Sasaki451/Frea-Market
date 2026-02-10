@@ -25,7 +25,7 @@ class SearchTest extends TestCase
         $response->assertSee($matchProduct->name);
         $response->assertDontSee($notMatchProduct->name);
 
-        $this->post("/item/{$matchProduct->id}");
+        $this->post("/item/{$matchProduct->id}/liked");
 
         $response = $this->get('/?keyword=シャツ');
 

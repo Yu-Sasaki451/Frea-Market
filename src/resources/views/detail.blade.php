@@ -16,7 +16,7 @@
             <p class="product-brand">{{ $product->brand }}</p>
             <p class="product-price">¥{{ number_format($product->price) }} (税込)</p>
             <div class="product-actions">
-                <form action="/item/{{ $product->id }}" method="post">
+                <form action="/item/{{ $product->id }}/liked" method="post">
                     @csrf
                     <button class="product-action--like {{ $liked ? 'is-liked' : ''}}" type="submit">
                         <span class="icon"> {!! file_get_contents(public_path('svg/like.svg')) !!}</span>
@@ -72,7 +72,7 @@
                 @endforeach
             </ul>
         </div>
-        <form class="comment-form" action="/item/{{ $product->id }}" method="post">
+        <form class="comment-form" action="/item/{{ $product->id }}/comment" method="post">
             @csrf
             <textarea class="comment-textarea" name="content"></textarea>
             <div class="comment-error">

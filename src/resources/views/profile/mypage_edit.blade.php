@@ -30,5 +30,5 @@
         <button class="mypage-form__button" type="submit">更新する</button>
     </form>
 </div>
-<script src="{{ asset('js/image_preview.js') }}"></script>
+<script src="{{ asset('js/image_preview.js') }}?v=1"></script>
 @endsection

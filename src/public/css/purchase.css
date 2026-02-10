@@ -1,23 +1,35 @@
 * {box-sizing: border-box;}
 
-/*---共通---*/
+/* ========== 共通 ==========*/
 .purchase-content {
     display: flex;
-    width: 1300px;
+    width: 100%;
+    max-width: 1300px;
     justify-content: space-around;
     margin: 0 auto;
+    gap: 60px;
     padding: 20px;
 }
 
 .purchase-summary,
 .purchase-payment,
 .purchase-address {
-    width: 600px;
+    width: 100%;
     border-bottom: 3px solid gainsboro;
     padding: 30px 0;
 }
 
-/*---商品情報欄---*/
+.purchase-content__left {
+    flex: 1 1 0;
+    min-width: 320px;
+}
+
+.purchase-content__right {
+    flex: 0 1 360px;
+    min-width: 260px;
+}
+
+/* ==========商品情報欄 ==========*/
 .purchase-summary {
     display: flex;
     gap: 30px;
@@ -25,16 +37,17 @@
 
 
 .purchase-summary__left {
-    width: 150px;
-    height: auto;
+    width: 120px;
+    height: 120px;
 }
 
 .product-img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
-/*---支払い方法---*/
+/* ==========支払い方法 ==========*/
 .purchase-label {
     font-size: 20px;
 }
@@ -49,7 +62,7 @@
     padding: 0 20px;
 }
 
-/*---配送先---*/
+/* ==========配送先 ==========*/
 .address-header {
     display: flex;
     justify-content: space-between;
@@ -67,9 +80,10 @@
     margin: 0;
 }
 
-/*---購入アクション---*/
+/* ========== 購入アクション ==========*/
 .purchase-info {
-    width: 400px;
+    width: 100%;
+    max-width: 420px;
     border: 2px solid gainsboro;
     margin-bottom: 50px;
 }
@@ -89,7 +103,8 @@
 
 
 .purchase-button {
-    width: 400px;
+    width: 100%;
+    max-width: 420px;
     height: 40px;
     background-color: red;
     color: white;

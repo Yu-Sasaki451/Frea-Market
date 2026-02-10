@@ -58,7 +58,17 @@
     margin-top: 40px;
 }
 
-.tab-panel[hidden] {
+.mypage-tab__panel {
+    display: grid;
+    grid-template-columns: repeat(5, 250px);
+    gap: 50px;
+    padding: 20px;
+    justify-content: start;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.mypage-tab__panel[hidden] {
     display: none !important;
 }
 
@@ -91,6 +101,5 @@
     display: flex;
     justify-content: space-between;
     margin: 0;
-    margin-bottom: 10px;
     font-size: 18px;
 }

@@ -24,8 +24,8 @@
     display: grid;
     grid-template-columns: repeat(5, 200px);
     gap: 50px;
-    justify-content: start;
-    width: fit-content;
+    justify-content: center;
+    width: min(100%, 1400px);
     margin: 0 auto;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .product-img--square {
-    width: 200px;
+    width: 100%;
     aspect-ratio: 1 /1;
     overflow: hidden;
 }
@@ -55,7 +55,7 @@
 }
 
 .product-label {
-    width: 200px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0;
@@ -74,8 +74,8 @@
     display: grid;
     grid-template-columns: repeat(4, 150px);
     gap: 30px;
-    justify-content: start;
-    width: fit-content;
+    justify-content: center;
+    width: min(100%, 1000px);
     margin: 0 auto;
 }
 }
