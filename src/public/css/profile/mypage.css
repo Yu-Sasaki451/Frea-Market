@@ -1,4 +1,5 @@
 .mypage-header {
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -7,7 +8,8 @@
 }
 
 .mypage-header--left {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,11 +62,11 @@
 
 .mypage-tab__panel {
     display: grid;
-    grid-template-columns: repeat(5, 250px);
+    grid-template-columns: repeat(6, 200px);
     gap: 50px;
     padding: 20px;
     justify-content: start;
-    width: fit-content;
+    width: min(100%, 1500px);
     margin: 0 auto;
 }
 
@@ -84,7 +86,7 @@
 }
 
 .product-img--square {
-    width: 200px;
+    width: 100%;
     aspect-ratio: 1 /1;
     overflow: hidden;
 }
@@ -97,9 +99,31 @@
 }
 
 .product-label {
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     display: flex;
     justify-content: space-between;
     margin: 0;
     font-size: 18px;
+}
+
+/* ========== ここから下はタブレット用 ==========*/
+@media screen and (min-width:768px) and (max-width:850px) {
+
+    .mypage-tablist {
+        padding-left: 60px;
+        border-bottom: 2px solid gainsboro;
+        display: flex;
+        gap: 40px;
+    }
+
+    .mypage-tab__panel {
+        display: grid;
+        grid-template-columns: repeat(4, 150px);
+        gap: 30px;
+        justify-content: center;
+        width: min(100%, 800px);
+        margin: 0 auto;
+    }
+
 }

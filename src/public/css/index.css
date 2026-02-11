@@ -1,6 +1,6 @@
 * {box-sizing: border-box;}
 
-/* ========== タブ設定 ==========*/
+/* ========== タブ設定 ========== */
 
 .tablist {
     padding-left: 100px;
@@ -33,7 +33,7 @@
     display: none !important;
 }
 
-/* ========== 画像の設定 ==========*/
+/* ========== 画像の設定 ========== */
 
 .product-card {
     display: flex;
@@ -67,7 +67,7 @@
 
 
 
-/*ここから下はタブレット用*/
+/* ========== ここから下はタブレット用 ==========*/
 @media screen and (min-width:768px) and (max-width:850px){
 
 .tab-panel {

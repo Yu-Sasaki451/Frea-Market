@@ -21,7 +21,7 @@
                 </div>
                 <div class="purchase-summary__right">
                     <p class="purchase-summary__name">{{ $product->name }}</p>
-                    <p class="purchase-summary__price">¥{{ number_format($product->price) }} (税込)</p>
+                    <p class="purchase-summary__price">¥ {{ number_format($product->price) }}</p>
                 </div>
             </div>
             <div class="purchase-payment">
@@ -45,17 +45,13 @@
         </div>
         <div class="purchase-content__right">
             <dl class="purchase-info">
-                <div class="info-row">
-                    <div class="info-row--top">
-                        <dt class="info-title">商品代金</dt>
-                        <dd class="info-value">¥{{ number_format($product->price) }}</dd>
-                    </div>
+                <div class="info-row info-row--top">
+                    <dt class="info-title">商品代金</dt>
+                    <dd class="info-value">¥{{ number_format($product->price) }}</dd>
                 </div>
-                <div class="info-row">
-                    <div class="info-row--bottom">
-                        <dt class="info-title">支払い方法</dt>
-                        <dd class="info-value" id="paymentPreview"></dd>
-                    </div>
+                <div class="info-row info-row--bottom">
+                    <dt class="info-title">支払い方法</dt>
+                    <dd class="info-value" id="paymentPreview"></dd>
                 </div>
             </dl>
             <button class="purchase-button" type="submit">購入する</button>

@@ -4,10 +4,10 @@
 .purchase-content {
     display: flex;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1400px;
     justify-content: space-around;
     margin: 0 auto;
-    gap: 60px;
+    gap: 150px;
     padding: 20px;
 }
 
@@ -32,13 +32,13 @@
 /* ==========商品情報欄 ==========*/
 .purchase-summary {
     display: flex;
-    gap: 30px;
+    gap: 50px;
 }
 
 
 .purchase-summary__left {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
 }
 
 .product-img {
@@ -47,13 +47,28 @@
     object-fit: cover;
 }
 
+.purchase-summary__name {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.purchase-summary__price {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
 /* ==========支払い方法 ==========*/
 .purchase-label {
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .payment-select {
     display: block;
+    width: 200px;
+    font-size: 16px;
     margin: 30px 50px 20px
 }
 
@@ -115,3 +130,46 @@
 }
 
 
+/* ========== ここから下はタブレット用 ==========*/
+@media screen and (min-width:768px) and (max-width:850px) {
+
+
+    .purchase-content {
+        max-width: 800px;
+        gap: 100px;
+        padding: 10px;
+    }
+
+    .purchase-content__right {
+        flex: 0 1 260px;
+    }
+
+    .purchase-summary__left {
+        width: 120px;
+        height: 120px;
+    }
+
+    .purchase-label {
+        font-size: 20px;
+    }
+
+    .payment-select {
+        width: 150px;
+        font-size: 14px;
+        margin: 15px 40px 10px
+    }
+
+    .info-row--top,
+    .info-row--bottom {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        font-size: 14px;
+        padding: 10px;
+        margin-left: 10px;
+    }
+
+    .purchase-button {
+        height: 32px;
+        font-size: 18px;
+    }
+}
