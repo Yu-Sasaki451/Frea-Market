@@ -37,7 +37,6 @@ class MypageTest extends TestCase
         $response->assertStatus(200);
         $response->assertSeeText('テストネーム');
         $response->assertSee('storage/profiles/default-test.png');
-        $response->assertSeeText;
 
     }
 }
