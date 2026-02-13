@@ -14,7 +14,7 @@
         <div class="product-summary">
             <h1 class="product__title">{{ $product->name }}</h1>
             <p class="product-brand">{{ $product->brand }}</p>
-            <p class="product-price">¥{{ number_format($product->price) }} (税込)</p>
+            <p class="product-price">¥ <span>{{ number_format($product->price) }}</span> (税込)</p>
             <div class="product-actions">
                 <form action="/item/{{ $product->id }}/liked" method="post">
                     @csrf

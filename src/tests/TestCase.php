@@ -41,14 +41,22 @@ abstract class TestCase extends BaseTestCase
     {
         $data = array_merge([
             'user_id' => $user->id,
-            'name' => '購入者',
-            'image' => null,
+            'name' => 'テストネーム',
+            'image' => 'profiles/default-test.png',
             'post_code' => '123-4567',
             'address' => '東京都港区1-2-3',
             'building' => 'テストビル101',
         ], $overrides);
 
         return Profile::create($data);
+    }
+
+    protected function createUserWithProfile(array $userOverrides = [], array $profileOverrides = []): User
+    {
+        $user = $this->createUser($userOverrides);
+        $this->createProfile($user, $profileOverrides);
+
+        return $user;
     }
 
     protected function createProduct(array $overrides = []): Product

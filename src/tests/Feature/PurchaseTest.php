@@ -15,8 +15,7 @@ class PurchaseTest extends TestCase
     public function test_購入処理、Soldの表示()
     {
         $seller = $this->createUser();
-        $buyer = $this->createUser();
-        $this->createProfile($buyer);
+        $buyer = $this->createUserWithProfile();
 
         $product = $this->createProduct([
             'user_id' => $seller->id,
@@ -61,8 +60,7 @@ class PurchaseTest extends TestCase
     public function test_商品購入、マイページに購入商品表示()
     {
         $seller = $this->createUser();
-        $buyer = $this->createUser();
-        $this->createProfile($buyer);
+        $buyer = $this->createUserWithProfile();
 
         $product = $this->createProduct([
             'user_id' => $seller->id,

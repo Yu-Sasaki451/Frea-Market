@@ -111,7 +111,7 @@
 .info-row--top,
 .info-row--bottom {
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 120px 1fr;
     padding: 25px 30px;
     margin-left: 20px;
 }

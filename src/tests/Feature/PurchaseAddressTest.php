@@ -14,8 +14,7 @@ class PurchaseAddressTest extends TestCase
      */
     public function test_配送先住所変更、購入画面に反映()
     {
-        $user = $this->createUser();
-        $this->createProfile($user);
+        $user = $this->createUserWithProfile();
 
         $product = $this->createProduct();
 
@@ -41,8 +40,7 @@ class PurchaseAddressTest extends TestCase
      */
     public function test_配送先変更、購入情報に変更配送先保存()
     {
-        $buyer = $this->createUser();
-        $this->createProfile($buyer);
+        $buyer = $this->createUserWithProfile();
 
         $product = $this->createProduct();
 
