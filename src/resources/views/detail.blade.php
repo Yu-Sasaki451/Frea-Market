@@ -55,7 +55,7 @@
             </dl>
         </div>
         <div class="comment">
-            <h2>コメント({{ $product->comments_count }})</h2>
+            <h2 class="product-comment__title">コメント({{ $product->comments_count }})</h2>
             <ul class="comment-list">
                 @foreach($product->comments as $comment)
                 <li class="comment-item">
