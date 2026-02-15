@@ -26,14 +26,7 @@ class PurchaseTest extends TestCase
         $response = $this->get("/purchase/{$product->id}");
         $response->assertStatus(200);
 
-        $purchaseResponse = $this->post("/purchase/{$product->id}", [
-            'name' => $product->name,
-            'price' => $product->price,
-            'post_code' => '123-4567',
-            'address' => '東京都港区1-2-3',
-            'building' => 'テストビル101',
-            'payment' => 'card',
-        ]);
+        $purchaseResponse = $this->post("/purchase/{$product->id}", $this->purchasePayload($product));
 
         $purchaseResponse->assertRedirect('/');
 
@@ -71,19 +64,14 @@ class PurchaseTest extends TestCase
         $response = $this->get("/purchase/{$product->id}");
         $response->assertStatus(200);
 
-        $purchaseResponse = $this->post("/purchase/{$product->id}", [
-            'name' => $product->name,
-            'price' => $product->price,
-            'post_code' => '123-4567',
-            'address' => '東京都港区1-2-3',
-            'building' => 'テストビル101',
-            'payment' => 'card',
-        ]);
+        $purchaseResponse = $this->post("/purchase/{$product->id}", $this->purchasePayload($product));
 
         $purchaseResponse->assertRedirect('/');
 
         $mypageResponse = $this->get('/mypage');
         $mypageResponse->assertStatus(200);
-        $mypageResponse->assertSeeText($product->name);
+
+        $purchaseSection = $this->purchaseSection($mypageResponse->getContent());
+        $this->assertStringContainsString($product->name, $purchaseSection);
     }
 }

@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class MypageTest extends TestCase
@@ -31,12 +30,16 @@ class MypageTest extends TestCase
 
         $this->createPurchase($user, $purchasedProduct);
 
-        $this->actingAs($user);
-
-        $response = $this->get("/mypage");
+        $response = $this->actingAs($user)->get("/mypage");
         $response->assertStatus(200);
         $response->assertSeeText('テストネーム');
         $response->assertSee('storage/profiles/default-test.png');
+
+        $sellSection = $this->sellSection($response->getContent());
+        $this->assertStringContainsString($sellProduct->name, $sellSection);
+
+        $purchaseSection = $this->purchaseSection($response->getContent());
+        $this->assertStringContainsString($purchasedProduct->name, $purchaseSection);
 
     }
 }

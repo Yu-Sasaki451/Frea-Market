@@ -14,6 +14,9 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    /**
+     * トップ画面のマイリストタブ領域抽出
+     */
     protected function mylistSection(string $content): string
     {
         $this->assertStringContainsString('id="panel-mylist"', $content);
@@ -21,6 +24,29 @@ abstract class TestCase extends BaseTestCase
         return Str::after($content, 'id="panel-mylist"');
     }
 
+    /**
+     * マイページの出品タブ領域抽出
+     */
+    protected function sellSection(string $content): string
+    {
+        $this->assertStringContainsString('id="panel-sell"', $content);
+
+        return Str::after($content, 'id="panel-sell"');
+    }
+
+    /**
+     * マイページの購入タブ領域抽出
+     */
+    protected function purchaseSection(string $content): string
+    {
+        $this->assertStringContainsString('id="panel-purchase"', $content);
+
+        return Str::after($content, 'id="panel-purchase"');
+    }
+
+    /**
+     * ログイン系テストで使う固定ユーザーを作成
+     */
     protected function makeUser(array $overrides = []): User
     {
         $data = array_merge([
@@ -32,11 +58,17 @@ abstract class TestCase extends BaseTestCase
         return User::create($data);
     }
 
+    /**
+     * User Factoryでユーザーを作成
+     */
     protected function createUser(array $overrides = []): User
     {
         return User::factory()->create($overrides);
     }
 
+    /**
+     * プロフィールを作成
+     */
     protected function createProfile(User $user, array $overrides = []): Profile
     {
         $data = array_merge([
@@ -51,6 +83,9 @@ abstract class TestCase extends BaseTestCase
         return Profile::create($data);
     }
 
+    /**
+     * ユーザー作成とプロフィール作成をまとめてやる
+     */
     protected function createUserWithProfile(array $userOverrides = [], array $profileOverrides = []): User
     {
         $user = $this->createUser($userOverrides);
@@ -59,11 +94,17 @@ abstract class TestCase extends BaseTestCase
         return $user;
     }
 
+    /**
+     * Product Factoryで商品作成
+     */
     protected function createProduct(array $overrides = []): Product
     {
         return Product::factory()->create($overrides);
     }
 
+    /**
+     * 購入レコード作成
+     */
     protected function createPurchase(User $user, Product $product, array $overrides = []): Purchase
     {
         $data = array_merge([
@@ -80,6 +121,26 @@ abstract class TestCase extends BaseTestCase
         return Purchase::create($data);
     }
 
+    /**
+     * 購入POSTで使うリクエスト配列
+     */
+    protected function purchasePayload(Product $product, array $overrides = []): array
+    {
+        $data = array_merge([
+            'name' => $product->name,
+            'price' => $product->price,
+            'post_code' => '123-4567',
+            'address' => '東京都港区1-2-3',
+            'building' => 'テストビル101',
+            'payment' => 'card',
+        ], $overrides);
+
+        return $data;
+    }
+
+    /**
+     * 指定ユーザーが指定商品へいいね
+     */
     protected function likeProduct(User $user, Product $product): void
     {
         $user->likedProducts()->attach($product->id);

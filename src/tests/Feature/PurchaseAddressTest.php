@@ -18,9 +18,7 @@ class PurchaseAddressTest extends TestCase
 
         $product = $this->createProduct();
 
-        $this->actingAs($user);
-
-        $addressResponse = $this->post("/purchase/address/{$product->id}", [
+        $addressResponse = $this->actingAs($user)->post("/purchase/address/{$product->id}", [
             'post_code' => '987-6543',
             'address' => '東京都新宿区4-5-6',
             'building' => 'サンプルマンション202',
@@ -44,22 +42,20 @@ class PurchaseAddressTest extends TestCase
 
         $product = $this->createProduct();
 
-        $this->actingAs($buyer);
-
-        $this->post("/purchase/address/{$product->id}", [
+        $this->actingAs($buyer)->post("/purchase/address/{$product->id}", [
             'post_code' => '111-2222',
             'address' => '東京都渋谷区7-8-9',
             'building' => 'テストビル303',
         ]);
 
-        $purchaseResponse = $this->post("/purchase/{$product->id}", [
-            'name' => $product->name,
-            'price' => $product->price,
-            'post_code' => '111-2222',
-            'address' => '東京都渋谷区7-8-9',
-            'building' => 'テストビル303',
-            'payment' => 'card',
-        ]);
+        $purchaseResponse = $this->post(
+            "/purchase/{$product->id}",
+            $this->purchasePayload($product, [
+                'post_code' => '111-2222',
+                'address' => '東京都渋谷区7-8-9',
+                'building' => 'テストビル303',
+            ])
+        );
 
         $purchaseResponse->assertRedirect('/');
 

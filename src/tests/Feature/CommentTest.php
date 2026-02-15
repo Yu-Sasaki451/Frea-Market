@@ -10,6 +10,8 @@ use App\Models\Comment;
 
 class CommentTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -64,9 +66,7 @@ class CommentTest extends TestCase
         $user = $this->createUser();
         $product = $this->createProduct();
 
-        $this->actingAs($user);
-
-        $response = $this->post(route('comment.store',$product->id),[
+        $response = $this->actingAs($user)->post(route('comment.store',$product->id),[
             'content' => '']);
 
         $response->assertSessionHasErrors(['content']);
@@ -83,9 +83,7 @@ class CommentTest extends TestCase
         $product = $this->createProduct();
         $comment = str_repeat('a',256);
 
-        $this->actingAs($user);
-
-        $response = $this->post(route('comment.store',$product->id),[
+        $response = $this->actingAs($user)->post(route('comment.store',$product->id),[
             'content' => $comment]);
 
         $response->assertSessionHasErrors(['content']);

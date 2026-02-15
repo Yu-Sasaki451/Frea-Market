@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class EditProfileTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -17,9 +19,7 @@ class EditProfileTest extends TestCase
 
         $user = $this->createUserWithProfile();
 
-        $this->actingAs($user);
-
-        $response = $this->get("/mypage/profile");
+        $response = $this->actingAs($user)->get("/mypage/profile");
         $response->assertStatus(200);
         $response->assertSee('テストネーム');
         $response->assertSee('default-test.png');

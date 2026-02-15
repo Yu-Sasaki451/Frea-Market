@@ -49,10 +49,13 @@ class LoginTest extends TestCase
         $data = $this->base();
         $data['email'] = 'test@exam.com';
 
-        $this->from('/login')
-        ->post('/login',$data)
-        //->assertSessionHasErrors(['email' => 'ログイン情報が登録されていません']);
-        ->assertSessionHasErrors(['email']);
+        $response = $this->from('/login')
+            ->post('/login',$data);
+        $response->assertSessionHasErrors(['email']);
+        $this->assertStringContainsString(
+            'ログイン情報が登録されていません',
+            session('errors')->first('email')
+        );
 
     }
 
@@ -63,10 +66,13 @@ class LoginTest extends TestCase
         $data = $this->base();
         $data['password'] = '12345689';
 
-        $this->from('/login')
-        ->post('/login',$data)
-        //->assertSessionHasErrors(['email' => 'ログイン情報が登録されていません']);
-        ->assertSessionHasErrors(['email']);
+        $response = $this->from('/login')
+            ->post('/login',$data);
+        $response->assertSessionHasErrors(['email']);
+        $this->assertStringContainsString(
+            'ログイン情報が登録されていません',
+            session('errors')->first('email')
+        );
 
     }
 
