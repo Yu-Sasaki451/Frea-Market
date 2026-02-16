@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Laravel\Fortify\Http\Requests\LoginRequest;
+use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class LoginFormRequest extends LoginRequest
+class LoginRequest extends FortifyLoginRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class LoginFormRequest extends LoginRequest
     public function rules():array
     {
         return [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' =>'required',
         ];
     }
@@ -34,6 +34,7 @@ class LoginFormRequest extends LoginRequest
     public function messages():array{
         return [
             'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレス形式で入力してください',
             'password.required' => 'パスワードを入力してください',
         ];
     }

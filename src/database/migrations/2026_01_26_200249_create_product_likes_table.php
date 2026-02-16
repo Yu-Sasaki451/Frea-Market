@@ -15,8 +15,8 @@ class CreateProductLikesTable extends Migration
     {
         Schema::create('product_likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('product_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
             $table->unique(['user_id', 'product_id']);
             $table->timestamps();
         });

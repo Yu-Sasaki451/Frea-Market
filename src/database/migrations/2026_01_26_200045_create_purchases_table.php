@@ -15,8 +15,8 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('product_id')->unique();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->unique()->constrained();
             $table->string('name');
             $table->integer('price');
             $table->string('payment');
