@@ -22,7 +22,11 @@ Route::get('/login', [AuthController::class, 'login'])->name('login.form');
 Route::get('/', [ProductController::class, 'index'])->name('index');
 Route::get('/item/{id}', [ProductController::class, 'productDetail'])->name('product.detail');
 
-Route::middleware('auth')->group(function(){
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::middleware(['auth','verified'])->group(function(){
     Route::get('/mypage', [ProfileController::class, 'showMypage'])->name('mypage.show');
 
     Route::get('/mypage/profile', [ProfileController::class, 'mypageEdit'])->name('mypage.edit.form');
