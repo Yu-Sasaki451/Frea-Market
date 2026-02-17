@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="auth-header">
-        <a href="/"><img class="header-logo" src="{{ asset('svg/logo.svg') }}" alt=""></a>
+        <a href="/"><img class="header-logo" src="{{ asset('UI/COACHTECHヘッダーロゴ.png') }}" alt=""></a>
         <form action="/" method="get">
             <input class="header-utility__input" type="text" name="keyword" value="{{ request('keyword') }}" placeholder="何をお探しですか？">
         </form>

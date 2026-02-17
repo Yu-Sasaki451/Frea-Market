@@ -11,7 +11,7 @@
 <body>
     <header class="auth-header">
         <div class="header__inner">
-            <img class="svg-logo" src="{{ asset('svg/logo.svg') }}" alt="">
+            <img class="svg-logo" src="{{ asset('UI/COACHTECHヘッダーロゴ.png') }}" alt="">
         </div>
     </header>
     @yield('content')

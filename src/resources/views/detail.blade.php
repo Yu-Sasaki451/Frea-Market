@@ -20,13 +20,17 @@
                 <form action="/item/{{ $product->id }}/liked" method="post">
                     @csrf
                     <button class="product-action--like {{ $liked ? 'is-liked' : ''}}" type="submit">
-                        <span class="icon"> {!! file_get_contents(public_path('svg/like.svg')) !!}</span>
+                        <span class="icon">
+                            <img src="{{ asset($liked ? 'UI/ハートロゴ_ピンク.png' : 'UI/ハートロゴ_デフォルト.png') }}" alt="いいねアイコン">
+                        </span>
                         <span class="count">{{ $product->likes_count }}</span>
                     </button>
                 </form>
 
                 <div class="product-comment">
-                    <span class="icon">{!! file_get_contents(public_path('svg/comment.svg')) !!}</span>
+                    <span class="icon">
+                        <img src="{{ asset('UI/ふきだしロゴ.png') }}" alt="コメントアイコン">
+                    </span>
                     <span class="count">{{ $product->comments_count }}</span>
                 </div>
             </div>
