@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
+<link rel="stylesheet" href="{{ asset('css/validate.css') }}">
 @endsection
 
 @section('content')
@@ -31,6 +32,11 @@
                     <option value="convenience">コンビニ支払い</option>
                     <option value="card">カード支払い</option>
                 </select>
+                <div class="validate-error">
+                @error('payment','purchase')
+                {{ $message }}
+                @enderror
+                </div>
             </div>
             <div class="purchase-address">
                 <div class="address-header">
@@ -41,6 +47,11 @@
                     <p class="post_code">〒{{ $shipping['post_code'] ?? '' }}</p>
                     <p class="address">{{ $shipping['address'] ?? '' }} {{ $shipping['building'] ?? '' }}</p>
                 </div>
+                <div class="validate-error">
+                @error('address','purchase')
+                {{ $message }}
+                @enderror
+            </div>
             </div>
         </div>
         <div class="purchase-content__right">

@@ -21,6 +21,9 @@ class PurchaseRequest extends FormRequest
      *
      * @return array
      */
+
+    protected $errorBag = 'purchase';
+
     public function rules()
     {
         return [

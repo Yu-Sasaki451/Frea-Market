@@ -21,6 +21,9 @@ class ProfileRequest extends FormRequest
      *
      * @return array
      */
+
+    protected $errorBag = 'profile';
+
     public function rules()
     {
         return [

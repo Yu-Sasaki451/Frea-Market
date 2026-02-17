@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sell.css') }}">
+<link rel="stylesheet" href="{{ asset('css/validate.css') }}">
 @endsection
 
 @section('content')
@@ -18,11 +19,15 @@
             type="file"
             name="image"
             id="imageInput"
-            accept="image/*"
-            required>
+            accept="image/*">
 
             <label class="sell-image__button" for="imageInput">画像を選択する</label>
             <div class="sell-image__preview" id="imagePreview"></div>
+        </div>
+        <div class="validate-error">
+                @error('image','exhibition')
+                {{ $message }}
+                @enderror
         </div>
     </section>
 
@@ -39,6 +44,11 @@
                     <label for="cat-{{ $category->id}}">{{ $category->name }}</label>
                 @endforeach
             </div>
+            <div class="validate-error">
+                @error('categories','exhibition')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
         <div class="sell-condition">
             <label class="sell-label" for="">商品の状態</label>
@@ -48,6 +58,11 @@
                 <option class="sell-option" value="{{ $condition->id}}">{{ $condition->name }}</option>
                 @endforeach
             </select>
+            <div class="validate-error">
+                @error('condition_id','exhibition')
+                {{ $message }}
+                @enderror
+            </div>
         </div>
     </section>
 
@@ -55,15 +70,31 @@
         <h2 class="sell-title">商品名と説明</h2>
         <label class="sell-label" for="name">商品名</label>
         <input class="sell-input" type="text" id="name" name="name" value="{{ old('name') }}">
+        <div class="validate-error">
+                @error('name','exhibition')
+                {{ $message }}
+                @enderror
+        </div>
 
         <label class="sell-label" for="brand">ブランド名</label>
         <input class="sell-input" type="text" id="brand" name="brand" value="{{ old('brand') }}">
+        <div class="validate-error"></div>
 
         <label class="sell-label" for="description">商品の説明</label>
         <textarea class="sell-textarea" name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
+        <div class="validate-error">
+                @error('description','exhibition')
+                {{ $message }}
+                @enderror
+        </div>
 
         <label class="sell-label" for="price">販売価格</label>
         <input class="sell-input" type="text" id="price" name="price" placeholder="¥" value="{{ old('price') }}">
+        <div class="validate-error">
+                @error('price','exhibition')
+                {{ $message }}
+                @enderror
+        </div>
     </section>
     <button class="sell-button" type="submit">出品する</button>
 </form>

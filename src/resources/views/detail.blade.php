@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/validate.css') }}">
 @endsection
 
 
@@ -75,8 +76,8 @@
         <form class="comment-form" action="/item/{{ $product->id }}/comment" method="post">
             @csrf
             <textarea class="comment-textarea" name="content"></textarea>
-            <div class="comment-error">
-                @error('content')
+            <div class="validate-error">
+                @error('content','comment')
                 {{ $message }}
                 @enderror
             </div>

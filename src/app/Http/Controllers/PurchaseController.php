@@ -7,6 +7,8 @@ use App\Models\Purchase;
 use App\Models\Product;
 use App\Models\Comment;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -39,7 +41,7 @@ class PurchaseController extends Controller
         return view('purchase_address',compact('product'));
     }
 
-    public function storePurchaseAddress(Request $request,$id){
+    public function storePurchaseAddress(AddressRequest $request,$id){
 
         $data = $request->only(['post_code','address','building']);
         $data = array_map(fn($v) => $v === '' ? null : $v, $data);
@@ -48,7 +50,7 @@ class PurchaseController extends Controller
         return redirect ('/purchase/' .$id);
     }
 
-    public function storePurchase(Request $request,$id){
+    public function storePurchase(PurchaseRequest $request,$id){
         $user = auth()->id();
         $product = Product::findOrFail($id);
 

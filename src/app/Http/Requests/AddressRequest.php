@@ -21,6 +21,9 @@ class AddressRequest extends FormRequest
      *
      * @return array
      */
+
+    protected $errorBag = 'address';
+
     public function rules()
     {
         return [
@@ -32,6 +35,7 @@ class AddressRequest extends FormRequest
     public function messages()
     {
         return [
+            'post_code.required' => '郵便番号を入力してください',
             'post_code.regex' => '郵便番号は「123−4567」の形式で入力してください',
             'address.required' => '住所を入力してください'
         ];

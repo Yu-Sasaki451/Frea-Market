@@ -21,13 +21,16 @@ class ExhibitionRequest extends FormRequest
      *
      * @return array
      */
+
+    protected $errorBag = 'exhibition';
+
     public function rules()
     {
         return [
             'name' => 'required',
             'image' => 'required|mimes:jpeg,png',
             'description' => 'required|max:255',
-            'category_id' => 'required',
+            'categories' => 'required',
             'condition_id' => 'required',
             'price' => 'required|numeric|min:0',
         ];
@@ -37,10 +40,11 @@ class ExhibitionRequest extends FormRequest
 
         return [
             'name.required' => '商品名を入力してください',
+            'image.required' => '商品画像をアップロードしてください',
             'image.mimes' => '拡張子が.jpegもしくは.pngのファイルをアップロードしてください',
             'description.required' => '商品説明を入力してください',
             'description.max' => '商品説明は255文字以内で入力してください',
-            'category_id.required' => 'カテゴリーを選択してください',
+            'categories.required' => 'カテゴリーを1つ以上選択してください',
             'condition_id.required' => '商品の状態を選択してください',
             'price.required' => '価格を入力してください',
             'price.numeric' => '数値で入力してください',

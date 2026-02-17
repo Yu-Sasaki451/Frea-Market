@@ -11,13 +11,11 @@
 
 .sell-label {
     display: block;
-    margin-top: 20px;
     font-size: 14px;
     font-weight: bold;
 }
 
 .sell-title {
-    margin-top: 20px;
     border-bottom: 2px solid rgb(182, 182, 182);
 }
 
@@ -37,7 +35,16 @@
 }
 
 .sell-image__input {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 .sell-image__button {
@@ -87,7 +94,8 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 25px 0;
+    margin-top: 25px;
+    margin-bottom: 5px;
 }
 
 .category-list input {
@@ -150,5 +158,5 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 40px 0 ;
+    margin: 30px 0 ;
 }
