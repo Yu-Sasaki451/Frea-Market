@@ -69,7 +69,7 @@ class CommentTest extends TestCase
         $response = $this->actingAs($user)->post(route('comment.store',$product->id),[
             'content' => '']);
 
-        $response->assertSessionHasErrors(['content']);
+        $response->assertSessionHasErrorsIn('comment', ['content']);
 
         $this->assertDatabaseMissing('product_comments', [
             'product_id' => $product->id,
@@ -86,7 +86,7 @@ class CommentTest extends TestCase
         $response = $this->actingAs($user)->post(route('comment.store',$product->id),[
             'content' => $comment]);
 
-        $response->assertSessionHasErrors(['content']);
+        $response->assertSessionHasErrorsIn('comment', ['content']);
 
         $this->assertDatabaseMissing('product_comments', [
             'product_id' => $product->id,

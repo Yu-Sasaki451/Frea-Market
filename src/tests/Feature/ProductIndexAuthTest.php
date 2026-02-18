@@ -11,13 +11,14 @@ class ProductIndexAuthTest extends TestCase
 
     public function test_商品一覧表示、ログインユーザー(){
         $user = $this->createUser();
+        $buyer = $this->createUser();
 
         $productA = $this->createProduct(['name' => '商品A']);
         $productB = $this->createProduct(['name' => '商品B', 'user_id' => $user->id]);
         $productC = $this->createProduct(['name' => '商品C']);
         $productD = $this->createProduct(['name' => '商品D']);
 
-        $this->createPurchase($user, $productD);
+        $this->createPurchase($buyer, $productD);
 
         $response = $this->actingAs($user)->get('/');
 

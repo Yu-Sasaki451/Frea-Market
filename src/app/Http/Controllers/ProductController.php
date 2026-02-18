@@ -33,10 +33,8 @@ class ProductController extends Controller
 
     $products = $query->get();
 
-    //購入済みかチェック
-    $purchasedProducts = Auth::check()
-    ? Purchase::where('user_id', Auth::id())->pluck('product_id')->all()
-    : [];
+    //購入済みかチェック（誰かが購入済みならSold表示）
+    $purchasedProducts = Purchase::pluck('product_id')->all();
 
     return view('index', compact('products','likedProducts','purchasedProducts'));
 }

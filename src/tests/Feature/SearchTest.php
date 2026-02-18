@@ -18,7 +18,7 @@ class SearchTest extends TestCase
 
         $this->actingAs($user);
 
-        $response = $this->get('/?keyword=シャツ');
+        $response = $this->get(route('index', ['keyword' => 'シャツ']));
 
         $response->assertStatus(200);
         $response->assertSee('value="シャツ"', false);
@@ -27,7 +27,7 @@ class SearchTest extends TestCase
 
         $this->post("/item/{$matchProduct->id}/liked");
 
-        $response = $this->get('/?keyword=シャツ');
+        $response = $this->get(route('index', ['keyword' => 'シャツ']));
 
         $response->assertStatus(200);
         $response->assertSee('value="シャツ"', false);
