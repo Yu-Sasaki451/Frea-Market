@@ -26,7 +26,7 @@ cd Frea-Market
 docker compose up -d --build
 ```
 
-### 2. Laravel初期設定（PHPコンテナ内）
+### 2. Laravel環境構築
 
 ```bash
 docker compose exec php bash
@@ -35,10 +35,9 @@ composer install
 cp .env.example .env
 ```
 
-`.env`は、少なくとも以下をDocker向けに設定してください。
+`.env`に以下の環境変数を追加
 
 ```env
-APP_URL=http://localhost
 
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -58,6 +57,7 @@ MAIL_FROM_ADDRESS=no-reply@example.com
 ```bash
 php artisan key:generate
 php artisan migrate --seed
+php artisan storage:link
 ```
 
 ## テスト
