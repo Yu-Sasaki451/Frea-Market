@@ -1,93 +1,117 @@
-# PiGly -Weight Records-
+# Frea-Market -フリマアプリ-
 
 ## 概要
 
-・fortifyを使用した登録、認証<br>
-・初期体重登録<br>
-・情報の作成・更新・削除<br>
-・期間での検索機能
+- fortifyを使用した登録、認証
+- 商品の出品・購入
+- プロフィールの登録・変更
+- 商品の検索機能
+- mailhogを使用したメール認証
 
 ## 使用技術
 
-Laravel Framework 8.83.29<br>
-php:8.1-fpm<br>
-nginx:1.21.1<br>
-mysql:8.0.32<br>
-phpMyAdmin
+- Laravel Framework 8.83.29
+- php:8.1-fpm
+- nginx:1.21.1
+- mysql:8.0.32
+- phpMyAdmin
 
 ## 環境構築
 
-- Docker のビルドからマイグレーション、シーディングまでを記述
+### 1. Docker起動
 
-### Docker 　ビルド
-
-下記コマンドを 1 行ずつ実行してください<br>
-
-1.git クローン
-
-```
-git clone git@github.com:Yu-Sasaki451/pigly.git
-```
-
-2.Docker ビルド
-
-```
-cd pigly
-```
-
-```
+```bash
+git clone git@github.com:Yu-Sasaki451/Frea-Market.git
+cd Frea-Market
 docker compose up -d --build
 ```
 
-### Laravel 　環境構築
+### 2. Laravel初期設定（PHPコンテナ内）
 
-下記コマンドを 1 行ずつ実行してください<br>
-
-1.PHP コンテナへ入る
-
-```
+```bash
 docker compose exec php bash
-```
-
-2.composer インストール
-
-```
+cd /var/www
 composer install
-```
-
-3.　.env コピー　※環境変数は適宜変更してください
-
-```
 cp .env.example .env
 ```
 
-4.アプリケーションキー作成
+`.env`は、少なくとも以下をDocker向けに設定してください。
 
+```env
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_FROM_ADDRESS=no-reply@example.com
 ```
+
+続けて、以下を実行してください。
+
+```bash
 php artisan key:generate
+php artisan migrate --seed
 ```
 
-5.　マイグレーション実行
+## テスト
 
-```
-php artisan migrate
+### 1. Featureテスト（php artisan test）
+
+`phpunit.xml`ではテストDBに`laravel_db_test`を使用します。  
+クローン直後は、先にテストDBを作成してください。
+
+```bash
+docker compose exec mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS laravel_db_test;"
 ```
 
-6.　シーディング実行
+その後、PHPコンテナ内で以下を実行してください。
 
+```bash
+php artisan test
 ```
-php artisan db:seed
+
+### 2. Duskテスト（ブラウザテスト）
+
+`tests/Browser`配下のテストを実行します。  
+`docker compose up -d`で`selenium`サービスが起動している前提です。  
+また、`src/.env.dusk.local` の `DUSK_DRIVER_URL=http://selenium:4444/wd/hub` を使用します。  
+PHPコンテナ内で以下を実行してください。
+
+```bash
+php artisan dusk:chrome-driver --detect
+php artisan dusk
 ```
+
+## メール認証の確認手順
+
+この確認手順はローカル環境（`localhost`）での実行を前提にしています。  
+
+1. `http://localhost/register` からユーザー登録する  
+2. ログイン後、認証案内画面（`/email/verify`）に遷移する  
+3. `認証はこちらから` を押して Mailhog を開く  
+4. Mailhog（`http://localhost:8025`）で認証メールを確認する  
+5. メール内の認証リンクを押して認証完了を確認する
+
+## 動作確認用アカウント（Seeder）
+
+`php artisan migrate --seed` 実行後、以下でログインできます。
+
+- email: `sandaikitetsu@test.com`
+- password: `onepiece`
 
 ## URL
 
-開発環境：http://localhost<br>
-phpMyAdmin：http://localhost:8080/
+- 開発環境: http://localhost
+- phpMyAdmin: http://localhost:8080
+- Mailhog: http://localhost:8025
 
 ## ER 図
 
-![ER Diagram](src/public/er.svg)
-
-```
-
-```
+![ER Diagram](src/public/ER.png)
