@@ -64,9 +64,6 @@ php artisan storage:link
 
 ### 1. Featureテスト（php artisan test）
 
-`phpunit.xml`ではテストDBに`laravel_db_test`を使用します。  
-クローン直後は、先にテストDBを作成してください。
-
 ```bash
 docker compose exec mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS laravel_db_test;"
 ```
@@ -79,13 +76,9 @@ php artisan test
 
 ### 2. Duskテスト（ブラウザテスト）
 
-`tests/Browser`配下のテストを実行します。  
-`docker compose up -d`で`selenium`サービスが起動している前提です。  
-また、`src/.env.dusk.local` の `DUSK_DRIVER_URL=http://selenium:4444/wd/hub` を使用します。  
 PHPコンテナ内で以下を実行してください。
 
 ```bash
-php artisan dusk:chrome-driver --detect
 php artisan dusk
 ```
 
