@@ -32,6 +32,10 @@ function changeTabs(e) {
         .removeAttribute("hidden");
 
     const url = new URL(window.location.href);
-    url.searchParams.set("tab", tabValue);
+    if (tabValue === "mylist") {
+        url.searchParams.set("tab", "mylist");
+    } else {
+        url.searchParams.delete("tab");
+    }
     window.history.replaceState({}, "", url.toString());
 }

@@ -29,14 +29,20 @@ class MylistTabSwitchTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/')
+                ->assertPathIs('/')
+                ->assertScript('return window.location.search;', '')
                 ->assertPresent('#tab-mylist')
                 ->assertPresent('#panel-mylist')
                 ->assertAttribute('#panel-mylist', 'hidden', 'true')
                 ->click('#tab-mylist')
                 ->pause(200)
+                ->assertScript('return window.location.search;', '?tab=mylist')
                 ->assertMissing('#panel-mylist[hidden]')
                 ->assertPresent('#panel-recommend[hidden]')
                 ->assertAttribute('#tab-mylist', 'aria-selected', 'true')
+                ->click('#tab-recommend')
+                ->pause(200)
+                ->assertScript('return window.location.search;', '')
                 ->assertSee('いいね商品');
         });
     }
