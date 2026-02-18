@@ -58,6 +58,19 @@
     background: none;
     font-size: 18px;
     margin-top: 40px;
+    padding: 0 0 6px;
+    display: inline-block;
+    line-height: normal;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.mypage-tab__button:visited,
+.mypage-tab__button:hover,
+.mypage-tab__button:active {
+    color: inherit;
 }
 
 .mypage-tab__panel {

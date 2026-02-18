@@ -43,12 +43,11 @@ class MypageTabSwitchTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                ->visit('/mypage')
+                ->visit('/mypage?page=sell')
                 ->assertPresent('#tab-purchase')
                 ->assertPresent('#panel-purchase')
                 ->assertAttribute('#panel-purchase', 'hidden', 'true')
                 ->click('#tab-purchase')
-                ->pause(200)
                 ->assertMissing('#panel-purchase[hidden]')
                 ->assertPresent('#panel-sell[hidden]')
                 ->assertAttribute('#tab-purchase', 'aria-selected', 'true')

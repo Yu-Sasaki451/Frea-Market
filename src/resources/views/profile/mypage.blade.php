@@ -19,14 +19,30 @@
     </div>
     <div class="mypage-tab">
         <div class="mypage-tablist" role="tablist">
-            <button class="mypage-tab__button" role="tab" id="tab-sell" aria-controls="panel-sell" aria-selected="true" tabindex="0">
+            <a
+                class="mypage-tab__button"
+                role="tab"
+                id="tab-sell"
+                aria-controls="panel-sell"
+                aria-selected="{{ $activePage === 'sell' ? 'true' : 'false' }}"
+                tabindex="{{ $activePage === 'sell' ? '0' : '-1' }}"
+                href="{{ route('mypage.show', ['page' => 'sell']) }}"
+            >
                 出品した商品
-            </button>
-            <button class="mypage-tab__button" role="tab" id="tab-purchase" aria-controls="panel-purchase" aria-selected="false" tabindex="-1">
+            </a>
+            <a
+                class="mypage-tab__button"
+                role="tab"
+                id="tab-purchase"
+                aria-controls="panel-purchase"
+                aria-selected="{{ $activePage === 'buy' ? 'true' : 'false' }}"
+                tabindex="{{ $activePage === 'buy' ? '0' : '-1' }}"
+                href="{{ route('mypage.show', ['page' => 'buy']) }}"
+            >
                 購入した商品
-            </button>
+            </a>
         </div>
-        <div class="mypage-tab__panel" role="tabpanel" id="panel-sell" aria-labelledby="tab-sell" tabindex="0">
+        <div class="mypage-tab__panel" role="tabpanel" id="panel-sell" aria-labelledby="tab-sell" tabindex="0" {{ $activePage === 'sell' ? '' : 'hidden' }}>
             @foreach($products as $product)
             <div class="product-card">
                 <a href="/item/{{ $product->id }}">
@@ -39,7 +55,7 @@
             @endforeach
         </div>
 
-        <div class="mypage-tab__panel" role="tabpanel" id="panel-purchase" aria-labelledby="tab-purchase" tabindex="0" hidden>
+        <div class="mypage-tab__panel" role="tabpanel" id="panel-purchase" aria-labelledby="tab-purchase" tabindex="0" {{ $activePage === 'buy' ? '' : 'hidden' }}>
             @foreach($purchases as $purchase)
             <div class="product-card">
                 <a href="/item/{{ $purchase->product->id }}">
@@ -53,5 +69,4 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/tab.js') }}"></script>
 @endsection

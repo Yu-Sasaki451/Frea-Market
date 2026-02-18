@@ -51,14 +51,22 @@ abstract class TestCase extends BaseTestCase
      */
     protected function makeUser(array $overrides = []): User
     {
-        $data = array_merge([
+        $defaults = [
             'name' => 'テスト',
             'email' => 'test@example.com',
             'password' => Hash::make('12345678'),
             'email_verified_at' => now(),
-        ], $overrides);
+        ];
 
-        return User::create($data);
+        $data = array_merge($defaults, $overrides);
+
+        $user = User::create(collect($data)->except('email_verified_at')->all());
+
+        if (array_key_exists('email_verified_at', $data)) {
+            $user->forceFill(['email_verified_at' => $data['email_verified_at']])->save();
+        }
+
+        return $user;
     }
 
     /**

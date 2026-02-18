@@ -11,7 +11,7 @@ use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
-    public function showMypage(){
+    public function showMypage(Request $request){
         $profile = Profile::where('user_id',Auth::id())->first();
 
         $products = Product::where('user_id', Auth::id())->get();
@@ -20,7 +20,10 @@ class ProfileController extends Controller
             ->where('user_id', Auth::id())
             ->get();
 
-        return view('profile.mypage',compact('profile','products','purchases'));
+        $page = $request->query('page', 'sell');
+        $activePage = in_array($page, ['sell', 'buy'], true) ? $page : 'sell';
+
+        return view('profile.mypage',compact('profile','products','purchases', 'activePage'));
     }
 
     public function mypageEdit(){
