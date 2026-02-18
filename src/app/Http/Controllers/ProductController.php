@@ -18,6 +18,8 @@ class ProductController extends Controller
     $query = Product::query();
 
     $keyword = $request->input('keyword');
+    $tab = $request->query('tab', 'recommend');
+    $activeTab = in_array($tab, ['recommend', 'mylist'], true) ? $tab : 'recommend';
 
     //自分の出品を除外
     if (Auth::check()) {$query->where('user_id', '!=', Auth::id());}
@@ -36,7 +38,7 @@ class ProductController extends Controller
     //購入済みかチェック（誰かが購入済みならSold表示）
     $purchasedProducts = Purchase::pluck('product_id')->all();
 
-    return view('index', compact('products','likedProducts','purchasedProducts'));
+    return view('index', compact('products','likedProducts','purchasedProducts', 'activeTab'));
 }
 
 

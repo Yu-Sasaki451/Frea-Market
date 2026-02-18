@@ -72,4 +72,15 @@ class MylistTest extends TestCase
         $this->assertStringContainsString('Sold', $mylistSection);
     }
 
+    public function test_tabパラメータmylistでマイリストが初期表示される()
+    {
+        $response = $this->get('/?tab=mylist');
+
+        $response->assertStatus(200);
+        $response->assertSee('id="tab-mylist"', false);
+        $response->assertSee('id="tab-mylist" aria-controls="panel-mylist" aria-selected="true"', false);
+        $response->assertSee('id="panel-mylist" aria-labelledby="tab-mylist" tabindex="0"', false);
+        $response->assertSee('id="panel-recommend" aria-labelledby="tab-recommend" tabindex="0" hidden', false);
+    }
+
 }

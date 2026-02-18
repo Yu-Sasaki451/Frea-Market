@@ -13,6 +13,9 @@
         <a href="/"><img class="header-logo" src="{{ asset('UI/COACHTECHヘッダーロゴ.png') }}" alt=""></a>
         <form action="/" method="get">
             <input class="header-utility__input" type="text" name="keyword" value="{{ request('keyword') }}" placeholder="何をお探しですか？">
+            @if(request()->has('tab'))
+                <input type="hidden" name="tab" value="{{ request('tab') }}">
+            @endif
         </form>
         <nav class="header-utility__nav">
             @guest
