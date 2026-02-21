@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'name' => 'Zoro',
                 'email' => 'sandaikitetsu@test.com',
                 'password' =>Hash::make('onepiece'),
+                'email_verified_at' => now(),
             ]
         ]);
     }

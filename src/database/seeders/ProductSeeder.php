@@ -79,7 +79,7 @@ class ProductSeeder extends Seeder
             [
                 'user_id' => $userId,
                 'condition_id' => $conditionIds['状態が悪い'],
-                'name' => 'タンブラ-',
+                'name' => 'タンブラー',
                 'image' => 'products/tumbler.jpg',
                 'brand' => 'なし',
                 'price' => 500,

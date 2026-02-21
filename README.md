@@ -82,12 +82,12 @@ php artisan dusk
 
 ## メール認証の確認手順
 
-この確認手順はローカル環境（`localhost`）での実行を前提にしています。  
+この確認手順はローカル環境（`localhost`）での実行を前提にしています。
 
-1. `http://localhost/register` からユーザー登録する  
-2. ログイン後、認証案内画面（`/email/verify`）に遷移する  
-3. `認証はこちらから` を押して Mailhog を開く  
-4. Mailhog（`http://localhost:8025`）で認証メールを確認する  
+1. `http://localhost/register` からユーザー登録する
+2. ログイン後、認証案内画面（`/email/verify`）に遷移する
+3. `認証はこちらから` を押して Mailhog を開く
+4. Mailhog（`http://localhost:8025`）で認証メールを確認する
 5. メール内の認証リンクを押して認証完了を確認する
 
 ## 動作確認用アカウント（Seeder）
