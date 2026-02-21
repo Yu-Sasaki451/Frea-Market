@@ -63,6 +63,7 @@ php artisan storage:link
 
 ```bash
 docker compose exec mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS laravel_db_test;"
+docker compose exec mysql mysql -uroot -proot -e "GRANT ALL PRIVILEGES ON laravel_db_test.* TO 'laravel_user'@'%'; FLUSH PRIVILEGES;"
 ```
 
 その後、PHPコンテナ内で以下を実行してください。

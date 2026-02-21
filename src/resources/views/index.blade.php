@@ -19,14 +19,7 @@
         >
             おすすめ
         </button>
-        <button
-            class="tab-button"
-            role="tab"
-            id="tab-mylist"
-            aria-controls="panel-mylist"
-            aria-selected="{{ $activeTab === 'mylist' ? 'true' : 'false' }}"
-            tabindex="{{ $activeTab === 'mylist' ? '0' : '-1' }}"
-        >
+        <button class="tab-button" role="tab" id="tab-mylist" aria-controls="panel-mylist" aria-selected="{{ $activeTab === 'mylist' ? 'true' : 'false' }}" tabindex="{{ $activeTab === 'mylist' ? '0' : '-1' }}">
             マイリスト
         </button>
     </div>
