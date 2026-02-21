@@ -30,7 +30,6 @@ docker compose up -d --build
 
 ```bash
 docker compose exec php bash
-cd /var/www
 composer install
 cp .env.example .env
 ```
@@ -46,9 +45,7 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel
 
-MAIL_MAILER=smtp
-MAIL_HOST=mailhog
-MAIL_PORT=1025
+
 MAIL_FROM_ADDRESS=no-reply@example.com
 ```
 
