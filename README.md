@@ -7,13 +7,16 @@
 - プロフィールの登録・変更
 - 商品の検索機能
 - mailhogを使用したメール認証
+- stripeを使用したカード払い認証
 
 ## 使用技術
 
 - Laravel Framework 8.83.29
+- Laravel Fortify
 - php:8.1-fpm
 - nginx:1.21.1
 - mysql:8.0.32
+- MailHog
 - phpMyAdmin
 
 ## 環境構築
@@ -73,6 +76,29 @@ php artisan test
 ```
 
 ### 2. Duskテスト（ブラウザテスト）
+
+Dusk用の環境ファイルを作成してください。
+
+```bash
+cp src/.env.dusk.local.example src/.env.dusk.local
+```
+
+`src/.env.dusk.local` の値を環境に合わせて編集してください。
+このリポジトリを `docker-compose.yml` のデフォルト設定で起動する場合は、以下の値を設定してください。
+
+```env
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db_test
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel
+```
+
+続けて、APP_KEYを生成してください。
+
+```bash
+docker compose exec php php artisan key:generate --env=dusk.local
+```
 
 PHPコンテナ内で以下を実行してください。
 

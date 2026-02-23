@@ -16,6 +16,11 @@
     margin-top: 40px;
 }
 
+.tab-button[aria-selected="true"] {
+    color: #ff0000;
+    font-weight: bold;
+}
+
 .tab-panel {
     padding: 20px;
 }

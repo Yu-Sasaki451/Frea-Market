@@ -73,6 +73,11 @@
     color: inherit;
 }
 
+.mypage-tab__button[aria-selected="true"] {
+    color: #ff0000;
+    font-weight: bold;
+}
+
 .mypage-tab__panel {
     display: grid;
     grid-template-columns: repeat(6, 200px);

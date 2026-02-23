@@ -38,6 +38,8 @@ Route::middleware(['auth','verified'])->group(function(){
     Route::get('/purchase/{id}', [PurchaseController::class, 'showPurchase'])->name('purchase.form');
     Route::post('/purchase/{id}', [PurchaseController::class, 'storePurchase'])
         ->name('Purchase.store');
+    Route::get('/purchase/{id}/stripe/success', [PurchaseController::class, 'stripeSuccess'])
+        ->name('purchase.stripe.success');
 
     Route::get('/purchase/address/{id}',[PurchaseController::class, 'showPurchaseAddress'])
         ->name('purchase.address.form');

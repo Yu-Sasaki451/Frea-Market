@@ -28,9 +28,9 @@
             <div class="purchase-payment">
                 <label class="purchase-label">支払い方法</label>
                 <select class="payment-select" name="payment" id="paymentSelect">
-                    <option value="" selected disabled hidden>選択してください</option>
-                    <option value="convenience">コンビニ支払い</option>
-                    <option value="card">カード支払い</option>
+                    <option value="" {{ old('payment') ? '' : 'selected' }} disabled hidden>選択してください</option>
+                    <option value="convenience" {{ old('payment') === 'convenience' ? 'selected' : '' }}>コンビニ支払い</option>
+                    <option value="card" {{ old('payment') === 'card' ? 'selected' : '' }}>カード支払い</option>
                 </select>
                 <div class="validate-error">
                 @error('payment','purchase')
