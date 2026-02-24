@@ -3,43 +3,66 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class PurchaseTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @return void
-     */
-    public function test_購入処理、Soldの表示()
+    public function test_コンビニ払いで購入完了する()
     {
-        $seller = $this->createUser();
-        $buyer = $this->createUserWithProfile();
-
-        $product = $this->createProduct([
-            'user_id' => $seller->id,
-        ]);
-
-        $this->actingAs($buyer);
+        [$buyer, $product] = $this->preparePurchaseContext();
 
         $response = $this->get("/purchase/{$product->id}");
         $response->assertStatus(200);
 
-        $purchaseResponse = $this->post("/purchase/{$product->id}", $this->purchasePayload($product));
-
+        $purchaseResponse = $this->post("/purchase/{$product->id}", $this->purchasePayload($product, [
+            'payment' => 'convenience',
+        ]));
         $purchaseResponse->assertRedirect('/');
 
-        $this->assertDatabaseHas('purchases', [
-            'user_id' => $buyer->id,
-            'product_id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
-            'payment' => 'card',
-            'post_code' => '123-4567',
-            'address' => '東京都港区1-2-3',
-            'building' => 'テストビル101',
+        $this->assertPurchaseSaved($buyer, $product, 'convenience');
+    }
+
+    public function test_カード払いで購入完了する()
+    {
+        [$buyer, $product] = $this->preparePurchaseContext();
+
+        $response = $this->get("/purchase/{$product->id}");
+        $response->assertStatus(200);
+
+        config(['services.stripe.secret' => 'sk_test_dummy']);
+        Http::fake([
+            'https://api.stripe.com/v1/checkout/sessions' => Http::response([
+                'id' => 'cs_test_card_only',
+                'url' => 'https://checkout.stripe.test/session/cs_test_card_only',
+            ], 200),
+            'https://api.stripe.com/v1/checkout/sessions/*' => Http::response([
+                'id' => 'cs_test_card_only',
+                'payment_status' => 'paid',
+            ], 200),
         ]);
+
+        $purchaseResponse = $this->post("/purchase/{$product->id}", $this->purchasePayload($product, [
+            'payment' => 'card',
+        ]));
+        $purchaseResponse->assertRedirect('https://checkout.stripe.test/session/cs_test_card_only');
+
+        $successResponse = $this->get("/purchase/{$product->id}/stripe/success?session_id=cs_test_card_only");
+        $successResponse->assertRedirect('/');
+
+        $this->assertPurchaseSaved($buyer, $product, 'card');
+    }
+
+    public function test_Sold表示される()
+    {
+        $seller = $this->createUser();
+        $buyer = $this->createUserWithProfile();
+        $product = $this->createProduct([
+            'user_id' => $seller->id,
+        ]);
+        $this->createPurchase($buyer, $product);
 
         $indexResponse = $this->get('/');
         $indexResponse->assertStatus(200);
@@ -47,26 +70,15 @@ class PurchaseTest extends TestCase
         $indexResponse->assertSee('Sold');
     }
 
-    /**
-     * @return void
-     */
-    public function test_商品購入、マイページに購入商品表示()
+    public function test_マイページに購入商品が表示される()
     {
         $seller = $this->createUser();
         $buyer = $this->createUserWithProfile();
-
         $product = $this->createProduct([
             'user_id' => $seller->id,
         ]);
-
+        $this->createPurchase($buyer, $product);
         $this->actingAs($buyer);
-
-        $response = $this->get("/purchase/{$product->id}");
-        $response->assertStatus(200);
-
-        $purchaseResponse = $this->post("/purchase/{$product->id}", $this->purchasePayload($product));
-
-        $purchaseResponse->assertRedirect('/');
 
         $mypageResponse = $this->get('/mypage');
         $mypageResponse->assertStatus(200);

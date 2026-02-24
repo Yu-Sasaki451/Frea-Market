@@ -54,6 +54,7 @@ class PurchaseAddressTest extends TestCase
                 'post_code' => '111-2222',
                 'address' => '東京都渋谷区7-8-9',
                 'building' => 'テストビル303',
+                'payment' => 'convenience',
             ])
         );
 
@@ -65,7 +66,6 @@ class PurchaseAddressTest extends TestCase
             'post_code' => '111-2222',
             'address' => '東京都渋谷区7-8-9',
             'building' => 'テストビル303',
-            'payment' => 'card',
         ]);
     }
 }

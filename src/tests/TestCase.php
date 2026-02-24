@@ -156,4 +156,37 @@ abstract class TestCase extends BaseTestCase
     {
         $user->likedProducts()->attach($product->id);
     }
+
+    /**
+     * 購入テストの共通準備（購入者でログイン済み）
+     */
+    protected function preparePurchaseContext(): array
+    {
+        $seller = $this->createUser();
+        $buyer = $this->createUserWithProfile();
+        $product = $this->createProduct([
+            'user_id' => $seller->id,
+        ]);
+
+        $this->actingAs($buyer);
+
+        return [$buyer, $product];
+    }
+
+    /**
+     * 購入データ保存
+     */
+    protected function assertPurchaseSaved(User $buyer, Product $product, string $payment): void
+    {
+        $this->assertDatabaseHas('purchases', [
+            'user_id' => $buyer->id,
+            'product_id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'payment' => $payment,
+            'post_code' => '123-4567',
+            'address' => '東京都港区1-2-3',
+            'building' => 'テストビル101',
+        ]);
+    }
 }
