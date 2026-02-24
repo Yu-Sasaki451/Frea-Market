@@ -50,12 +50,17 @@ DB_PASSWORD=laravel
 
 
 MAIL_FROM_ADDRESS=no-reply@example.com
+STRIPE_KEY=pk_test_xxxxxxxxxxxxxxxxxxxxx
+STRIPE_SECRET=sk_test_xxxxxxxxxxxxxxxxxxxxx
 ```
+
+`STRIPE_KEY` と `STRIPE_SECRET` は Stripe ダッシュボードで取得したテスト用キー（`pk_test_...` / `sk_test_...`）を設定してください。
 
 続けて、以下を実行してください。
 
 ```bash
 php artisan key:generate
+php artisan config:clear
 php artisan migrate --seed
 php artisan storage:link
 ```
